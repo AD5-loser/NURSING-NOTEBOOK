@@ -1,314 +1,406 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nursing Notebook</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#1E2A2A; --ink-soft:#4B5A5A; --teal:#0F5257; --teal-dark:#0B3E42;
-  --sage:#E8F0EE; --ivory:#FAF9F6; --amber:#C98A3E; --amber-soft:#FBF0E0;
-  --border:#DCE4E1; --white:#FFFFFF;
-}
-*{box-sizing:border-box;}
-body{margin:0; background:var(--ivory); color:var(--ink); font-family:'Inter','Noto Sans Bengali',sans-serif;}
-h1,h2,h3{font-family:'Lora','Noto Sans Bengali',serif; margin:0; color:var(--teal-dark);}
-button{font-family:inherit; cursor:pointer; background:none; border:none; color:inherit;}
-button:focus-visible, a:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nursing Question Bank | BSc in Nursing</title>
 
-.topbar{padding:18px 24px; border-bottom:1px solid var(--border); background:var(--white); position:sticky; top:0; z-index:10;}
-.brand{display:flex; align-items:center; gap:10px; max-width:880px; margin:0 auto;}
-.brand-mark{width:34px; height:34px; border-radius:8px; background:var(--teal); color:var(--ivory); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
-.brand-name{font-family:'Lora',serif; font-weight:600; font-size:1.15rem; color:var(--teal-dark);}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 
-.breadcrumb{background:var(--sage); border-bottom:1px solid var(--border);}
-.breadcrumb-inner{max-width:880px; margin:0 auto; padding:12px 24px; display:flex; align-items:center; flex-wrap:wrap; gap:4px;}
-.crumb-group{display:flex; align-items:center; gap:4px;}
-.crumb{font-size:0.85rem; color:var(--ink-soft); padding:2px 4px; border-radius:4px;}
-.crumb:hover{color:var(--teal-dark); text-decoration:underline;}
-.crumb-current{color:var(--teal-dark); font-weight:600;}
-.crumb-sep{color:var(--ink-soft); opacity:0.6; margin:0 2px;}
-
-.content{max-width:880px; width:100%; margin:0 auto; padding:40px 24px 64px;}
-.view{animation:fadeIn .35s ease;}
-@keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
-
-.view-header{margin-bottom:28px;}
-.view-header h2{font-size:1.5rem;}
-.view-subhead{color:var(--ink-soft); margin:6px 0 0; font-size:0.95rem;}
-
-.hero{padding:8px 0 36px; max-width:640px;}
-.hero-eyebrow-icon{display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:12px; background:var(--sage); color:var(--teal); margin-bottom:16px; font-size:1.3rem;}
-.hero h1{font-size:2rem; line-height:1.2;}
-.hero-sub{margin:14px 0 0; color:var(--ink-soft); font-size:1.02rem; line-height:1.6; max-width:52ch;}
-
-.year-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
-.year-card{text-align:left; background:var(--white); border:1px solid var(--border); border-radius:14px; padding:20px; display:flex; flex-direction:column; justify-content:space-between; gap:24px; min-height:116px; transition:.2s;}
-.year-card:hover{border-color:var(--teal); transform:translateY(-2px); box-shadow:0 8px 20px rgba(15,82,87,.08);}
-.year-card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:8px;}
-.year-card-label{font-family:'Lora',serif; font-weight:600; font-size:1.15rem; color:var(--teal-dark);}
-.year-card-bottom{display:flex; justify-content:space-between; align-items:center;}
-.year-card-cta{font-size:0.85rem; color:var(--ink-soft);}
-.year-card-arrow{color:var(--teal); flex-shrink:0;}
-
-.status-pill{font-size:0.72rem; font-weight:600; padding:3px 9px; border-radius:20px; white-space:nowrap;}
-.status-live{background:var(--sage); color:var(--teal-dark);}
-.status-soon{background:var(--amber-soft); color:var(--amber);}
-
-.subject-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
-.subject-card{display:flex; align-items:center; gap:12px; text-align:left; background:var(--white); border:1px solid var(--border); border-left:3px solid var(--teal); border-radius:10px; padding:16px; transition:.2s;}
-.subject-card:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(15,82,87,.08); background:var(--sage);}
-.subject-card-index{font-family:'Lora',serif; font-size:0.8rem; color:var(--teal); opacity:.6; flex-shrink:0;}
-.subject-card-name{flex:1; font-weight:500; font-size:0.98rem;}
-.subject-card-arrow{color:var(--ink-soft); flex-shrink:0;}
-
-.exam-year-list{display:flex; flex-direction:column; gap:10px; max-width:460px;}
-.exam-year-block{background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden;}
-.exam-year-pill{width:100%; display:flex; align-items:center; justify-content:space-between; padding:14px 18px; transition:.2s;}
-.exam-year-pill:hover{background:var(--sage);}
-.exam-year-number{font-family:'Lora',serif; font-weight:600; font-size:1.05rem; color:var(--teal-dark);}
-.exam-year-right{display:flex; align-items:center; gap:10px;}
-.exam-year-chev{color:var(--ink-soft); transition:transform .2s;}
-.exam-year-block.open .exam-year-chev{transform:rotate(90deg);}
-
-.exam-year-options{max-height:0; overflow:hidden; transition:max-height .25s ease; border-top:1px solid transparent;}
-.exam-year-block.open .exam-year-options{max-height:200px; border-top-color:var(--border);}
-.exam-year-options-inner{display:flex; gap:10px; padding:14px 18px;}
-.option-btn{flex:1; text-align:center; padding:10px 12px; border-radius:8px; border:1px solid var(--border); font-weight:600; font-size:0.9rem; text-decoration:none; color:var(--teal-dark); background:var(--sage); transition:.2s;}
-.option-btn:hover{background:var(--teal); color:var(--white);}
-.option-soon{padding:10px 4px; color:var(--ink-soft); font-size:0.88rem;}
-
-.empty-state{text-align:center; padding:56px 24px; background:var(--white); border:1px dashed var(--border); border-radius:14px;}
-.empty-icon{display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; background:var(--amber-soft); color:var(--amber); margin-bottom:16px; font-size:1.4rem;}
-.empty-state h3{font-size:1.2rem; margin-bottom:8px;}
-.empty-state p{color:var(--ink-soft); max-width:40ch; margin:0 auto; line-height:1.6;}
-.empty-back{display:inline-flex; align-items:center; gap:6px; margin-top:22px; font-size:0.9rem; font-weight:500; color:var(--teal); padding:8px 14px; border:1px solid var(--border); border-radius:8px;}
-.empty-back:hover{background:var(--sage);}
-
-.footer{border-top:1px solid var(--border); padding:20px 24px; text-align:center;}
-.footer p{margin:0; font-size:0.82rem; color:var(--ink-soft);}
-
-@media (max-width:640px){
-  .year-grid{grid-template-columns:1fr;}
-  .subject-grid{grid-template-columns:1fr;}
-  .hero h1{font-size:1.6rem;}
-  .content{padding:28px 18px 48px;}
-}
-</style>
-</head>
-<body>
-
-<header class="topbar">
-  <button class="brand" onclick="navigate({view:'home'})">
-    <span class="brand-mark">📘</span>
-    <span class="brand-name">Nursing Notebook</span>
-  </button>
-</header>
-
-<nav class="breadcrumb" id="breadcrumb" style="display:none;">
-  <div class="breadcrumb-inner" id="breadcrumbInner"></div>
-</nav>
-
-<main class="content" id="content"></main>
-
-<footer class="footer"><p>Nursing Notebook — organized study materials for B.Sc. Nursing students.</p></footer>
-
-<script>
-/* ==================================================================
-   এখানে আপনার Google Drive লিঙ্ক বসাবেন
-   ------------------------------------------------------------------
-   LINKS অবজেক্টে subject → exam year → written/mcq লিঙ্ক বসান।
-   যে সাল/বিষয়ে এখনো এন্ট্রি নেই, সেটা এমনিতেই "Coming soon" দেখাবে।
-   ২০১৮ সালের জন্য শুধু written বসালেই হবে — mcq বসাবেন না,
-   তাহলে ২০১৮-তে শুধু "রিটেন" বাটন দেখাবে, এমসিকিউ দেখাবে না।
-
-   উদাহরণ (নিচের anatomy-এর ভেতরে যেভাবে দেওয়া আছে, ঠিক সেভাবে):
-
-   anatomy: {
-     2025: { written: "আপনার_ড্রাইভ_লিঙ্ক", mcq: "আপনার_ড্রাইভ_লিঙ্ক" },
-     2018: { written: "আপনার_ড্রাইভ_লিঙ্ক" }   // শুধু written, mcq নেই
-   }
-   ================================================================== */
-const LINKS = {
-  anatomy: {
-    // 2025: { written: "", mcq: "" },
-    // 2024: { written: "", mcq: "" },
-    // 2018: { written: "" },
-  },
-  physiology: {},
-  "behavioural-science": {},
-  "fundamentals-1": {},
-  "micro-path": {},
-  english: {},
-  "nursing-informatics": {},
-};
-
-const EXAM_YEARS = [2025,2024,2023,2022,2021,2020,2019,2018];
-
-const PROGRAM = {
-  years: [
-    { id:"year1", label:"1st Year", available:true, subjects:[
-      { id:"anatomy", name:"Anatomy" },
-      { id:"physiology", name:"Physiology" },
-      { id:"behavioural-science", name:"Behavioural Science" },
-      { id:"fundamentals-1", name:"Fundamental of Nursing 1" },
-      { id:"micro-path", name:"Microbiology and Pathology" },
-      { id:"english", name:"English" },
-      { id:"nursing-informatics", name:"Nursing Informatics" },
-    ]},
-    { id:"year2", label:"2nd Year", available:false, subjects:[] },
-    { id:"year3", label:"3rd Year", available:false, subjects:[] },
-    { id:"year4", label:"4th Year", available:false, subjects:[] },
-  ]
-};
-
-let route = { view:"home" };
-
-function navigate(next){
-  route = next;
-  render();
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function getYear(id){ return PROGRAM.years.find(y=>y.id===id); }
-function getSubject(year, id){ return year?.subjects.find(s=>s.id===id); }
-
-function renderBreadcrumb(activeYear, activeSubject){
-  const bc = document.getElementById('breadcrumb');
-  const inner = document.getElementById('breadcrumbInner');
-  if(route.view==='home'){ bc.style.display='none'; return; }
-  bc.style.display='block';
-  const crumbs = [{label:"B.Sc. in Nursing", onClick:()=>navigate({view:'home'})}];
-  if(activeYear) crumbs.push({label:activeYear.label, onClick:()=>navigate({view:'year', yearId:activeYear.id})});
-  if(activeSubject) crumbs.push({label:activeSubject.name, onClick:null});
-  inner.innerHTML='';
-  crumbs.forEach((c,i)=>{
-    const group=document.createElement('span'); group.className='crumb-group';
-    if(c.onClick){
-      const b=document.createElement('button'); b.className='crumb'; b.innerText=c.label; b.onclick=c.onClick;
-      group.appendChild(b);
-    } else {
-      const s=document.createElement('span'); s.className='crumb crumb-current'; s.innerText=c.label;
-      group.appendChild(s);
+  <style>
+    :root {
+      --bg-primary: #FAF9F6; --card-bg: #FFFFFF;
+      --primary-accent: #0F5257; --primary-dark: #0B3E42;
+      --bg-soft: #E8F0EE; --border-color: #DCE4E1;
+      --text-main: #1E2A2A; --text-muted: #4B5A5A;
+      --warning-accent: #C98A3E; --warning-soft: #FBF0E0;
+      --font-heading: 'Lora', serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 14px;
+      --shadow-subtle: 0 2px 5px rgba(15,82,87,0.04);
+      --shadow-hover: 0 8px 18px rgba(15,82,87,0.08);
+      --transition-base: 0.25s ease; --transition-fade: 0.35s ease;
     }
-    if(i<crumbs.length-1){
-      const sep=document.createElement('span'); sep.className='crumb-sep'; sep.innerText='›';
-      group.appendChild(sep);
-    }
-    inner.appendChild(group);
-  });
-}
 
-function render(){
-  const activeYear = getYear(route.yearId);
-  const activeSubject = getSubject(activeYear, route.subjectId);
-  renderBreadcrumb(activeYear, activeSubject);
-  const el = document.getElementById('content');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg-primary); color: var(--text-main); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100vh; }
+    h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--primary-accent); font-weight: 600; line-height: 1.3; }
+    a { text-decoration: none; color: inherit; }
 
-  if(route.view==='home'){ el.innerHTML = homeView(); return; }
+    .top-header { position: sticky; top: 0; z-index: 100; background-color: rgba(255,255,255,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--border-color); padding: 12px 24px; }
+    .header-content { max-width: 960px; margin: 0 auto; display: flex; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .badge-icon { width: 36px; height: 36px; background-color: var(--bg-soft); border: 1px solid var(--border-color); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--primary-accent); font-size: 1.15rem; flex-shrink: 0; }
+    .brand-text h1 { font-size: 1.1rem; letter-spacing: -0.2px; }
 
-  if(route.view==='year' && activeYear && !activeYear.available){
-    el.innerHTML = comingSoon(activeYear.label, "এই বর্ষের স্টাডি মেটেরিয়াল এখনো যোগ করা হয়নি।", "B.Sc. in Nursing-এ ফিরে যান");
-    return;
-  }
-  if(route.view==='year' && activeYear && activeYear.available){
-    el.innerHTML = subjectsView(activeYear); return;
-  }
-  if(route.view==='subject' && activeYear && activeSubject){
-    el.innerHTML = examYearsView(activeYear, activeSubject); return;
-  }
-}
+    .breadcrumb-nav { background-color: var(--bg-soft); border-bottom: 1px solid var(--border-color); padding: 8px 24px; font-size: 0.82rem; }
+    .breadcrumb-container { max-width: 960px; margin: 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--text-muted); }
+    .breadcrumb-item { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: color var(--transition-base); }
+    .breadcrumb-item:hover { color: var(--primary-accent); text-decoration: underline; }
+    .breadcrumb-item.current { color: var(--primary-dark); font-weight: 600; cursor: default; text-decoration: none; }
+    .separator { color: #93A6A0; font-size: 0.75rem; }
 
-function homeView(){
-  const cards = PROGRAM.years.map(year=>`
-    <button class="year-card" onclick='navigate({view:"year",yearId:"${year.id}"})'>
-      <div class="year-card-top">
-        <span class="year-card-label">${year.label}</span>
-        <span class="status-pill ${year.available?'status-live':'status-soon'}">${year.available?'Available':'Coming soon'}</span>
+    .main-wrapper { max-width: 960px; width: 100%; margin: 0 auto; padding: 24px 24px 56px; flex: 1; }
+    .view-container { animation: fadeIn var(--transition-fade); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .section-header { margin-bottom: 18px; }
+    .section-header h2 { font-size: 1.4rem; }
+
+    .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 640px) { .grid-container { grid-template-columns: 1fr; } .main-wrapper { padding: 18px 16px 40px; } }
+    .item-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 18px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base); cursor: pointer; box-shadow: var(--shadow-subtle); }
+.item-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: #B5CCC7; }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.card-title { font-size: 1.1rem; color: var(--primary-accent); margin-bottom: 4px; font-weight: 600; }
+.card-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+.card-code { display: inline-block; font-size: 0.7rem; font-weight: 600; color: var(--primary-accent); background-color: var(--bg-soft); padding: 2px 7px; border-radius: 4px; margin-bottom: 6px; }
+
+.status-pill { font-size: 0.72rem; font-weight: 500; padding: 4px 10px; border-radius: 20px; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+.status-pill.available { background-color: var(--bg-soft); color: var(--primary-accent); border: 1px solid #C4D7D2; }
+.status-pill.pending { background-color: var(--warning-soft); color: var(--warning-accent); border: 1px solid #F0D5B0; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background-color: currentColor; }
+.card-footer-info { font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+
+.marks-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+
+.accordion-list { display: flex; flex-direction: column; gap: 10px; }
+.accordion-item { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; transition: border-color var(--transition-base); }
+.accordion-item.active { border-color: #B5CCC7; }
+.accordion-header { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; transition: background-color var(--transition-base); }
+.accordion-header:hover { background-color: #F8FAF9; }
+.accordion-title { font-family: var(--font-heading); font-size: 1rem; color: var(--primary-accent); font-weight: 600; }
+.accordion-toggle-icon { color: var(--text-muted); font-size: 1rem; transition: transform var(--transition-base); }
+.accordion-item.active .accordion-toggle-icon { transform: rotate(180deg); color: var(--primary-accent); }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #FCFDFD; border-top: 1px solid transparent; }
+.accordion-item.active .accordion-body { border-top-color: var(--border-color); }
+.accordion-body-inner { padding: 14px 18px; display: flex; gap: 10px; }
+.option-btn { flex: 1; text-align: center; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border-color); font-weight: 600; font-size: 0.88rem; background-color: var(--bg-soft); color: var(--primary-dark); cursor: pointer; transition: var(--transition-base); }
+.option-btn:hover { background-color: var(--primary-accent); color: #fff; }
+.option-btn.pending { background-color: var(--warning-soft); color: var(--warning-accent); border-color: #F0D5B0; cursor: not-allowed; }
+.option-btn.pending:hover { background-color: var(--warning-soft); color: var(--warning-accent); }
+
+.empty-card { background-color: var(--card-bg); border: 2px dashed var(--border-color); border-radius: var(--radius-lg); padding: 40px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 520px; margin: 20px auto; }
+.empty-icon { font-size: 2rem; padding: 12
+               <header class="top-header">
+    <div class="header-content">
+      <div class="brand" onclick="navigateTo('years')">
+        <div class="badge-icon">📖</div>
+        <div class="brand-text"><h1>Nursing Question Bank</h1></div>
       </div>
-      <div class="year-card-bottom">
-        <span class="year-card-cta">${year.available?'View subjects':'Notify me later'}</span>
-        <span class="year-card-arrow">›</span>
-      </div>
-    </button>`).join('');
-  return `
-    <div class="view">
-      <section class="hero">
-        <span class="hero-eyebrow-icon">🎓</span>
-        <h1>B.Sc. in Nursing</h1>
-        <p class="hero-sub">বিগত সালের বোর্ড পরীক্ষার প্রশ্ন ও উত্তর, বর্ষ ও বিষয় অনুযায়ী সাজানো — সহজে রিভিশনের জন্য।</p>
-      </section>
-      <section class="year-grid">${cards}</section>
-    </div>`;
-}
+    </div>
+  </header>
 
-function subjectsView(year){
-  const cards = year.subjects.map((s,i)=>`
-    <button class="subject-card" onclick='navigate({view:"subject",yearId:"${year.id}",subjectId:"${s.id}"})'>
-      <span class="subject-card-index">${String(i+1).padStart(2,'0')}</span>
-      <span class="subject-card-name">${s.name}</span>
-      <span class="subject-card-arrow">›</span>
-    </button>`).join('');
-  return `
-    <div class="view">
-      <div class="view-header"><h2>${year.label} subjects</h2><p class="view-subhead">যে বিষয়ের প্রশ্ন দেখতে চান, সেটাতে ক্লিক করুন।</p></div>
-      <div class="subject-grid">${cards}</div>
-    </div>`;
-}
+  <nav class="breadcrumb-nav"><div class="breadcrumb-container" id="breadcrumb"></div></nav>
 
-function examYearsView(year, subject){
-  const rows = EXAM_YEARS.map(ey=>{
-    const data = LINKS[subject.id] && LINKS[subject.id][ey];
-    const available = !!data;
-    let optionsHtml = '';
-    if(available){
-      const btns = [];
-      if(data.written) btns.push(`<a class="option-btn" href="${data.written}" target="_blank" rel="noopener">রিটেন</a>`);
-      if(data.mcq) btns.push(`<a class="option-btn" href="${data.mcq}" target="_blank" rel="noopener">এমসিকিউ</a>`);
-      optionsHtml = `<div class="exam-year-options-inner">${btns.join('')}</div>`;
-    } else {
-      optionsHtml = `<div class="exam-year-options-inner"><span class="option-soon">এই সালের প্রশ্ন এখনো যোগ করা হয়নি।</span></div>`;
+  <main class="main-wrapper"><div id="app-view" class="view-container"></div></main>
+
+  <footer>
+    BSc in Nursing — Previous Year Question Archive
+    <span class="credit">Built by Amrito</span>
+  </footer>
+
+  <script>
+    /* ==================================================================
+       ১. DATA MODEL — এখানেই সব তথ্য ও লিঙ্ক বসাতে হবে
+       ================================================================== */
+
+    /* -------------------------------------------------------------
+       LINKS — Google Drive PDF লিঙ্ক এখানে বসাবেন।
+       ফরম্যাট: LINKS[বিষয় কোড][সাল] = { written: "...", mcq: "..." }
+       খেয়াল রাখবেন: 2018 সালে শুধু "written" থাকবে, "mcq" লিখবেন না —
+       কারণ 2018 সালে MCQ পরীক্ষা ছিল না, তাই কোডেও mcq বাদ দিতে হবে।
+
+       উদাহরণ (Anatomy বিষয়ের জন্য):
+         LINKS.B124 = {
+           2025: { written: "https://drive.google.com/xxxx", mcq: "https://drive.google.com/yyyy" },
+           2024: { written: "https://drive.google.com/xxxx", mcq: "https://drive.google.com/yyyy" },
+           2018: { written: "https://drive.google.com/xxxx" }
+         };
+           যে সাল/টাইপ (written/mcq) এখানে দেওয়া নেই, ওয়েবসাইটে সেটাতে ক্লিক
+       করলে "not added yet" মেসেজ দেখাবে — সাইট ভাঙবে না।
+       ------------------------------------------------------------- */
+    const LINKS = {
+      // এখানে নিচে নিজের লিঙ্কগুলো যোগ করুন। যেমন:
+      // B124: {
+      //   2025: { written: "", mcq: "" },
+      //   2018: { written: "" }
+      // },
+    };
+
+    /* এই ৮টা সাল প্রতিটা বিষয়ে দেখানো হবে (নতুন থেকে পুরনো) */
+    const EXAM_YEARS = [2025,2024,2023,2022,2021,2020,2019,2018];
+
+    /* -------------------------------------------------------------
+       PROGRAM — বর্ষ ও বিষয়ের তালিকা (BNMC 2024 সিলেবাস অনুযায়ী)
+       প্রতিটা year object-এ "status" ফিল্ড আছে:
+         status: 'available'   → ক্লিক করলে বিষয়ের তালিকা দেখাবে
+         status: 'coming-soon' → ক্লিক করলে "Coming Soon" কার্ড দেখাবে
+       আপনার প্রশ্ন রেডি হয়ে গেলে সেই বর্ষের status বদলে 'available'
+       করে দিলেই ওই বর্ষ চালু হয়ে যাবে (নিচে subjects তালিকা আগে থেকেই
+       রেডি করা আছে, তাই শুধু status বদলালেই হবে)।
+       ------------------------------------------------------------- */
+    const PROGRAM = {
+      years: [
+        {
+          id: 'year-1', name: '1st Year', totalMarks: 1000,
+          status: 'available',   // ✅ ১ম বর্ষ এখন চালু
+          subjects: [
+            { code:'B111', name:'Communicative English', type:'General', written:60 },
+            { code:'B112', name:'Nursing Informatics', type:'General', written:60 },
+            { code:'B113', name:'Behavioral Science and Nursing Humanities', type:'General', written:90 },
+            { code:'B124', name:'Anatomy', type:'Foundational', written:90 },
+            { code:'B125', name:'Physiology', type:'Foundational', written:90 },
+            { code:'B126', name:'Microbiology and Pathology', type:'Foundational', written:90 },
+            { code:'B137', name:'Fundamentals of Nursing - I', type:'Professional', written:90 },
+          ]
+        },
+              {
+          id: 'year-2', name: '2nd Year', totalMarks: 1150,
+          status: 'coming-soon',   // ⏳ প্রশ্ন রেডি হলে 'available' করে দিন
+          subjects: [
+            { code:'B231', name:'Fundamentals of Nursing - II', type:'Professional', written:90 },
+            { code:'B232', name:'Pediatric Nursing', type:'Professional', written:90 },
+            { code:'B233', name:'Medical and Surgical Nursing - I', type:'Professional', written:90 },
+            { code:'B224', name:'Pharmacology', type:'Foundational', written:60 },
+            { code:'B235', name:'Traumatology and Orthopedic Nursing', type:'Professional', written:90 },
+            { code:'B226', name:'Nutrition and Biochemistry', type:'Foundational', written:90 },
+            { code:'B237', name:'Laws, Ethics and Forensic Nursing', type:'Professional', written:60 },
+          ]
+        },
+        {
+          id: 'year-3', name: '3rd Year', totalMarks: 950,
+          status: 'coming-soon',   // ⏳ প্রশ্ন রেডি হলে 'available' করে দিন
+          subjects: [
+            { code:'B331', name:'Geriatric Nursing', type:'Professional', written:90 },
+            { code:'B332', name:'Mental Health and Psychiatric Nursing', type:'Professional', written:90 },
+            { code:'B333', name:'Emergency and Critical Care Nursing', type:'Professional', written:90 },
+            { code:'B334', name:'Medical and Surgical Nursing - II', type:'Professional', written:90 },
+            { code:'B335', name:'Community Health Nursing and Epidemiology', type:'Professional', written:90 },
+          ]
+        },
+        {
+                    id: 'year-4', name: '4th Year', totalMarks: 1000,
+          status: 'coming-soon',   // ⏳ প্রশ্ন রেডি হলে 'available' করে দিন
+          subjects: [
+            { code:'B431', name:'Midwifery', type:'Professional', written:90 },
+            { code:'B432', name:'Obstetrical and Gynecological Nursing', type:'Professional', written:90 },
+            { code:'B433', name:'Nursing Administration and Management', type:'Professional', written:60 },
+            { code:'B434', name:'Nursing Education', type:'Professional', written:90 },
+            { code:'B435', name:'Research and Bio-statistics', type:'Professional', written:90 },
+            { code:'B416', name:'Advanced Communicative English', type:'General', written:60 },
+          ]
+        },
+      ]
+    };
+
+    /* সব বিষয়েই MCQ/SBA-এর নম্বর সবসময় ২০ (BNMC নিয়ম অনুযায়ী) */
+    const MCQ_MARKS = 20;
+
+    /* ==================================================================
+       ২. ROUTING / STATE — এখন কোন পেজে আছি সেটা মনে রাখার জায়গা
+       ================================================================== */
+    let currentRoute = { level: 'years', selectedYear: null, selectedSubject: null };
+
+    /* উপরে ব্রেডক্রাম্ব (Home > Year > Subject) আপডেট করে */
+    function updateBreadcrumb() {
+      const nav = document.getElementById('breadcrumb');
+      let html = `<span class="breadcrumb-item ${currentRoute.level==='years'?'current':''}" onclick="navigateTo('years')">Home</span>`;
+      if (currentRoute.selectedYear) {
+        html += `<span class="separator">/</span><span class="breadcrumb-item ${currentRoute.level==='subjects'?'current':''}" onclick="selectYear('${currentRoute.selectedYear.id}')">${currentRoute.selectedYear.name}</span>`;
+      }
+              if (currentRoute.selectedSubject) {
+        html += `<span class="separator">/</span><span class="breadcrumb-item current">${currentRoute.selectedSubject.name}</span>`;
+      }
+      nav.innerHTML = html;
     }
-    return `
-      <div class="exam-year-block" id="block-${ey}">
-        <button class="exam-year-pill" onclick="toggleBlock(${ey})">
-          <span class="exam-year-number">${ey}</span>
-          <span class="exam-year-right">
-            <span class="status-pill ${available?'status-live':'status-soon'}">${available?'Available':'Coming soon'}</span>
-            <span class="exam-year-chev">›</span>
-          </span>
-        </button>
-        <div class="exam-year-options">${optionsHtml}</div>
-      </div>`;
-  }).join('');
-  return `
-    <div class="view">
-      <div class="view-header"><h2>${subject.name}</h2><p class="view-subhead">যে সালের প্রশ্ন দেখতে চান, সেটাতে ক্লিক করুন — রিটেন বা এমসিকিউ অপশন খুলে যাবে।</p></div>
-      <div class="exam-year-list">${rows}</div>
-    </div>`;
-}
 
-function toggleBlock(ey){
-  const block = document.getElementById('block-'+ey);
-  const wasOpen = block.classList.contains('open');
-  document.querySelectorAll('.exam-year-block.open').forEach(b=>b.classList.remove('open'));
-  if(!wasOpen) block.classList.add('open');
-}
+    /* Home বাটনে ক্লিক করলে বা ব্রেডক্রাম্বে "Home" চাপলে এখানে আসে */
+    function navigateTo(level) {
+      currentRoute.level = level;
+      if (level === 'years') { currentRoute.selectedYear = null; currentRoute.selectedSubject = null; renderYearsView(); }
+      updateBreadcrumb();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-function comingSoon(title, message, backLabel){
-  return `
-    <div class="empty-state">
-      <span class="empty-icon">⏳</span>
-      <h3>${title}</h3>
-      <p>${message}</p>
-      <button class="empty-back" onclick='navigate({view:"home"})'>← ${backLabel}</button>
-    </div>`;
-}
+    /* ==================================================================
+       ৩. VIEW FUNCTIONS — প্রতিটা পেজের HTML তৈরি করে
+       ================================================================== */
 
-render();
-</script>
+    /* --- পেজ ১: বর্ষ নির্বাচন (Home) --- */
+    function renderYearsView() {
+      const container = document.getElementById('app-view');
+      let html = `<div class="section-header"><h2>Select Your Year</h2></div><div class="grid-container">`;
+      PROGRAM.years.forEach(year => {
+        const isAvail = year.status === 'available';   // status চেক করে badge রং ঠিক হয়
+        html += `
+          <div class="item-card" onclick="selectYear('${year.id}')">
+            <div class="card-top">
+              <h3 class="card-title">${year.name}</h3>
+              <span class="status-pill ${isAvail ? 'available' : 'pending'}">
+                <span class="status-dot"></span> ${isAvail ? 'Available' : 'Coming soon'}
+              </span>
+            </div>
+            <div class="card-footer-info"><span>${year.subjects.length} subjects</span><span>Total: ${year.totalMarks} marks</span></div>
+          </div>`;
+      });
+      html += `</div>`;
+      container.innerHTML = html;
+      updateBreadcrumb();
+    }    /* --- পেজ ২: বিষয়ের তালিকা (একটা বর্ষে ক্লিক করলে) --- */
+    function selectYear(yearId) {
+      const year = PROGRAM.years.find(y => y.id === yearId);
+      currentRoute.selectedYear = year;
+      currentRoute.selectedSubject = null;
+
+      /* এই বর্ষ এখনো "coming-soon" হলে বিষয়ের বদলে খালি কার্ড দেখাও */
+      if (year.status === 'coming-soon') {
+        renderComingSoonView(`Question papers for ${year.name} are being prepared`, 'years');
+        return;
+      }
+
+      currentRoute.level = 'subjects';
+      const container = document.getElementById('app-view');
+      let html = `<div class="section-header"><h2>${year.name} — Subjects</h2></div><div class="grid-container">`;
+      year.subjects.forEach(s => {
+        html += `
+          <div class="item-card" onclick="selectSubject('${s.code}')">
+            <div class="card-top">
+              <div>
+                <span class="card-code">${s.code}</span>
+                <h3 class="card-title">${s.name}</h3>
+                <p class="card-subtitle">${s.type} Subject</p>
+              </div>
+            </div>
+            <div class="card-footer-info"><span>Written: ${s.written} (MCQ/SBA: ${MCQ_MARKS})</span><span>›</span></div>
+          </div>`;
+      });
+      html += `</div>`;
+      container.innerHTML = html;
+      updateBreadcrumb();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* বিষয় কোড দিয়ে পুরো PROGRAM ঘেঁটে বিষয়টা খুঁজে বের করে */
+    function findSubject(code) {
+      for (const y of PROGRAM.years) { const s = y.subjects.find(x => x.code === code); if (s) return s; }
+      return null;
+    }
+          /* --- পেজ ২: বিষয়ের তালিকা (একটা বর্ষে ক্লিক করলে) --- */
+    function selectYear(yearId) {
+      const year = PROGRAM.years.find(y => y.id === yearId);
+      currentRoute.selectedYear = year;
+      currentRoute.selectedSubject = null;
+
+      /* এই বর্ষ এখনো "coming-soon" হলে বিষয়ের বদলে খালি কার্ড দেখাও */
+      if (year.status === 'coming-soon') {
+        renderComingSoonView(`Question papers for ${year.name} are being prepared`, 'years');
+        return;
+      }
+
+      currentRoute.level = 'subjects';
+      const container = document.getElementById('app-view');
+      let html = `<div class="section-header"><h2>${year.name} — Subjects</h2></div><div class="grid-container">`;
+      year.subjects.forEach(s => {
+        html += `
+          <div class="item-card" onclick="selectSubject('${s.code}')">
+            <div class="card-top">
+              <div>
+                <span class="card-code">${s.code}</span>
+                <h3 class="card-title">${s.name}</h3>
+                <p class="card-subtitle">${s.type} Subject</p>
+              </div>
+            </div>
+            <div class="card-footer-info"><span>Written: ${s.written} (MCQ/SBA: ${MCQ_MARKS})</span><span>›</span></div>
+          </div>`;
+      });
+      html += `</div>`;
+      container.innerHTML = html;
+      updateBreadcrumb();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* বিষয় কোড দিয়ে পুরো PROGRAM ঘেঁটে বিষয়টা খুঁজে বের করে */
+    function findSubject(code) {
+      for (const y of PROGRAM.years) { const s = y.subjects.find(x => x.code === code); if (s) return s; }
+      return null;
+    }
+          /* --- পেজ ৩: এক্সাম ইয়ার অ্যাকর্ডিয়ন (একটা বিষয়ে ক্লিক করলে) ---
+       এখানে নতুন পেজে যাওয়া হয় না — একই পেজে ২০১৮-২০২৫ সালের লিস্ট
+       দেখানো হয়, প্রতিটা সালে ক্লিক করলে Written/MCQ বাটন খুলে যায়। */
+    function selectSubject(code) {
+      const subject = findSubject(code);
+      currentRoute.selectedSubject = subject;
+      currentRoute.level = 'years-exam';
+      const container = document.getElementById('app-view');
+
+      let html = `
+        <div class="section-header">
+          <span class="card-code">${subject.code} • ${subject.type}</span>
+          <h2>${subject.name}</h2>
+          <p class="marks-note">Written: ${subject.written} marks (MCQ/SBA: ${MCQ_MARKS}, SAQ/SEQ${subject.written===90?'/EQ':''}: ${subject.written-MCQ_MARKS})</p>
+        </div>
+        <div class="accordion-list">`;
+
+      EXAM_YEARS.forEach(ey => {
+        /* এই বিষয় + এই সালের জন্য LINKS-এ কোনো এন্ট্রি আছে কিনা দেখা হচ্ছে */
+        const entry = (LINKS[subject.code] && LINKS[subject.code][ey]) || {};
+        const writtenLink = entry.written || '';
+        /* 2018 সালে MCQ বাটনই দেখানো হবে না (mcqLink = null মানে বাটন হাইড) */
+        const mcqLink = ey === 2018 ? null : (entry.mcq || '');
+
+        let btns = `<button class="option-btn ${writtenLink?'':'pending'}" onclick="${writtenLink ? `window.open('${writtenLink}','_blank')` : `alert('Written question for ${ey} not added yet.')`}">Written</button>`;
+        if (mcqLink !== null) {
+          btns += `<button class="option-btn ${mcqLink?'':'pending'}" onclick="${mcqLink ? `window.open('${mcqLink}','_blank')` : `alert('MCQ question for ${ey} not added yet.')`}">MCQ</button>`;
+        }
+
+        html += `
+          <div class="accordion-item" id="acc-${ey}">
+            <div class="accordion-header" onclick="toggleAccordion('acc-${ey}')">
+              <span class="accordion-title">${ey}</span>
+              <span class="accordion-toggle-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-body-inner">${btns}</div>
+            </div>
+          </div>`;
+      });
+                html += `</div>`;
+      container.innerHTML = html;
+      updateBreadcrumb();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* সাল-এ ক্লিক করলে Written/MCQ বাটন খোলা/বন্ধ (ড্রপডাউনের মতো) করে —
+       একবারে একটাই সাল খোলা থাকে, অন্যটাতে ক্লিক করলে আগেরটা বন্ধ হয়ে যায় */
+    function toggleAccordion(id) {
+      const item = document.getElementById(id);
+      const body = item.querySelector('.accordion-body');
+      const wasOpen = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item.active').forEach(el => {
+        el.classList.remove('active');
+        el.querySelector('.accordion-body').style.maxHeight = '0px';
+      });
+      if (!wasOpen) { item.classList.add('active'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    }
+
+    /* --- "Coming Soon" কার্ড — যে বর্ষ এখনো রেডি না তার জন্য --- */
+    function renderComingSoonView(message, backTarget) {
+      currentRoute.level = 'empty';
+      const container = document.getElementById('app-view');
+      container.innerHTML = `
+        <div class="empty-card">
+          <div class="empty-icon">⏳</div>
+          <h3>Coming Soon</h3>
+          <p class="empty-msg">${message}. Please check back later.</p>
+          <button class="btn-secondary" onclick="navigateTo('${backTarget}')">← Back to Home</button>
+        </div>`;
+            updateBreadcrumb();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ওয়েবসাইট প্রথম লোড হলে বর্ষ নির্বাচনের পেজ দিয়ে শুরু হবে */
+    document.addEventListener('DOMContentLoaded', () => { renderYearsView(); });
+  </script>
 </body>
 </html>
