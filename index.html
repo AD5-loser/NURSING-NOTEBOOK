@@ -113,15 +113,120 @@
   </footer>
 
   <script>
+    /* =====================================================================
+       প্রশ্নের লিংক যোগ করার নিয়ম (Drive link)
+       ---------------------------------------------------------------------
+       ১. নিচের LINKS-এর ভেতরে বিষয়ের কোড (যেমন B124) খুঁজে বের করো।
+       ২. ওই বিষয়ের সালের (যেমন 2025) লাইনে written: "" এর দুই কোটেশন
+          (" ") চিহ্নের মাঝখানে Drive লিংক paste করো।
+             written: "https://drive.google.com/file/d/XXXX/view",
+          MCQ হলে mcq: "" এর ভেতরে একইভাবে দাও।
+       ৩. লিংক ফাঁকা ("") থাকলে বাটনে "not added yet" দেখাবে, তাই যেটা
+          নেই সেটা ফাঁকা রেখে দাও। কিছু মুছে ফেলার দরকার নেই।
+       ৪. কমা (,) আর কোটেশন (") মুছে ফেলো না, তাহলে পেজ ভেঙে যাবে।
+       ৫. Drive ফাইলের Share সেটিং "Anyone with the link → Viewer" না
+          দিলে অন্যরা লিংক খুলতে পারবে না।
+       ৬. লিংকে ' (সিঙ্গেল কোটেশন) থাকলে সেটা বাদ দাও বা %27 করে দাও।
+       ৭. সেভ করে GitHub-এ commit/push করলে সাইট আপডেট হবে।
+
+       ২য়/৩য়/৪র্থ বর্ষের বিষয় যোগ করতে: ১ম বর্ষের ব্লক কপি করে বিষয়ের
+       কোড বদলে নাও (কোডগুলো নিচে PROGRAM-এর ভেতরে আছে) আর PROGRAM-এ
+       ওই বর্ষের status 'coming-soon' থেকে 'available' করো।
+       ===================================================================== */
     const LINKS = {
-      // B124: {
-      //   2025: { written: "", mcq: "" },
-      //   2018: { written: "" }
-      // },
+      // ---------- B111 : Communicative English ----------
+      B111: {
+        2025: { written: "", mcq: "" },
+        2024: { written: "", mcq: "" },
+        2023: { written: "", mcq: "" },
+        2022: { written: "", mcq: "" },
+        2021: { written: "", mcq: "" },
+        2020: { written: "", mcq: "" },
+        2019: { written: "", mcq: "" },
+        2018: { written: "" },   // ২০১৮ সালে MCQ নেই, তাই শুধু written
+      },
+
+      // ---------- B112 : Nursing Informatics ----------
+      B112: {
+        2025: { written: "", mcq: "" },
+        2024: { written: "", mcq: "" },
+        2023: { written: "", mcq: "" },
+        2022: { written: "", mcq: "" },
+        2021: { written: "", mcq: "" },
+        2020: { written: "", mcq: "" },
+        2019: { written: "", mcq: "" },
+        2018: { written: "" },   // ২০১৮ সালে MCQ নেই, তাই শুধু written
+      },
+
+      // ---------- B113 : Behavioral Science and Nursing Humanities ----------
+      B113: {
+        2025: { written: "", mcq: "" },
+        2024: { written: "", mcq: "" },
+        2023: { written: "", mcq: "" },
+        2022: { written: "", mcq: "" },
+        2021: { written: "", mcq: "" },
+        2020: { written: "", mcq: "" },
+        2019: { written: "", mcq: "" },
+        2018: { written: "" },   // ২০১৮ সালে MCQ নেই, তাই শুধু written
+      },
+
+      // ---------- B124 : Anatomy ----------
+      B124: {
+        2025: { written: "", mcq: "" },
+        2024: { written: "", mcq: "" },
+        2023: { written: "", mcq: "" },
+        2022: { written: "", mcq: "" },
+        2021: { written: "", mcq: "" },
+        2020: { written: "", mcq: "" },
+        2019: { written: "", mcq: "" },
+        2018: { written: "" },   // ২০১৮ সালে MCQ নেই, তাই শুধু written
+      },
+
+      // ---------- B125 : Physiology ----------
+      B125: {
+        2025: { written: "", mcq: "" },
+        2024: { written: "", mcq: "" },
+        2023: { written: "", mcq: "" },
+        2022: { written: "", mcq: "" },
+        2021: { written: "", mcq: "" },
+        2020: { written: "", mcq: "" },
+        2019: { written: "", mcq: "" },
+        2018: { written: "" },   // ২০১৮ সালে MCQ নেই, তাই শুধু written
+      },
+
+      // ---------- B126 : Microbiology and Pathology ----------
+      B126: {
+        2025: { written: "", mcq: "" },
+        2024: { written: "", mcq: "" },
+        2023: { written: "", mcq: "" },
+        2022: { written: "", mcq: "" },
+        2021: { written: "", mcq: "" },
+        2020: { written: "", mcq: "" },
+        2019: { written: "", mcq: "" },
+        2018: { written: "" },   // ২০১৮ সালে MCQ নেই, তাই শুধু written
+      },
+
+      // ---------- B137 : Fundamentals of Nursing - I ----------
+      B137: {
+        2025: { written: "", mcq: "" },
+        2024: { written: "", mcq: "" },
+        2023: { written: "", mcq: "" },
+        2022: { written: "", mcq: "" },
+        2021: { written: "", mcq: "" },
+        2020: { written: "", mcq: "" },
+        2019: { written: "", mcq: "" },
+        2018: { written: "" },   // ২০১৮ সালে MCQ নেই, তাই শুধু written
+      },
+
     };
 
+    // যে যে সালের প্রশ্ন দেখাবে তার তালিকা। নতুন সাল যোগ করতে এখানে সংখ্যা বসাও
+    // আর LINKS-এ প্রতিটি বিষয়ে ওই সালের লাইন যোগ করো।
     const EXAM_YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018];
 
+    // বর্ষ, বিষয়, কোড আর নম্বর এখানে। কোনো বর্ষের status 'available' করলে
+    // হোম পেজে "Available" দেখাবে; 'coming-soon' থাকলে "Coming soon" দেখাবে।
+    // ওই বর্ষের কিছু লিংক যোগ হওয়ার পরেই শুধু 'available' করো।
     const PROGRAM = {
       years: [
         {
@@ -273,12 +378,37 @@
         </div>
         <div class="accordion-list">`;
 
+      // ===================================================================
+      // Written ও MCQ বাটন কীভাবে কাজ করে (এই অংশে সাধারণত হাত দিতে হয় না)
+      // -------------------------------------------------------------------
+      // প্রতিটি সালের জন্য এই লুপ একবার চলে (ey = সাল, যেমন 2025)।
+      // তারপর উপরের LINKS থেকে ওই বিষয় ও ওই সালের লিংক খুঁজে নেয়।
+      // ===================================================================
       EXAM_YEARS.forEach(ey => {
         const entry = (LINKS[subject.code] && LINKS[subject.code][ey]) || {};
+
+        // Written বাটনের লিংক = LINKS-এর written: "..." এ যে লিংক দেবে।
+        // Written বাটনে চাপলে শুধু এই লিংকই খুলবে।
         const writtenLink = entry.written || '';
+
+        // MCQ বাটনের লিংক = LINKS-এর mcq: "..." এ যে লিংক দেবে।
+        // MCQ বাটনে চাপলে শুধু এই লিংকই খুলবে।
+        // ey === 2018 মানে ২০১৮ সালে MCQ বাটন দেখাবে না।
+        // ২০১৮-তেও MCQ দেখাতে চাইলে এই লাইনটা বদলে এভাবে লেখো:
+        //    const mcqLink = entry.mcq || '';
+        // (আর LINKS-এ ২০১৮ এর লাইনে mcq: "" যোগ করো)
         const mcqLink = ey === 2018 ? null : (entry.mcq || '');
 
+        // ---- Written বাটন ----
+        // লিংক থাকলে: নতুন ট্যাবে লিংক খোলে (window.open)।
+        // লিংক ফাঁকা থাকলে: বাটন ধূসর/কমলা দেখায় আর চাপলে alert আসে
+        // "not added yet"। alert-এর লেখা বদলাতে চাইলে নিচে 'not added yet' বদলাও।
+        // বাটনের গায়ের লেখা (Written) বদলাতে চাইলে লাইনের শেষের >Written< বদলাও।
         let btns = `<button class="option-btn ${writtenLink?'':'pending'}" onclick="${writtenLink ? `window.open('${writtenLink}','_blank')` : `alert('Written question for ${ey} not added yet.')`}">Written</button>`;
+
+        // ---- MCQ বাটন ----
+        // ঠিক Written বাটনের মতোই, শুধু mcqLink ব্যবহার করে।
+        // বাটনের গায়ের লেখা (MCQ) বদলাতে চাইলে লাইনের শেষের >MCQ< বদলাও।
         if (mcqLink !== null) {
           btns += `<button class="option-btn ${mcqLink?'':'pending'}" onclick="${mcqLink ? `window.open('${mcqLink}','_blank')` : `alert('MCQ question for ${ey} not added yet.')`}">MCQ</button>`;
         }
