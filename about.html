@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>About | Nursing Notebook - Rajshahi Medical University</title>
+  <meta name="description" content="About Nursing Notebook — an academic question bank initiative for B.Sc. in Nursing students under Rajshahi Medical University (RMU).">
+  <meta name="theme-color" content="#0F5C5E">
+
+  <!-- Google Fonts: Lora (Headings) & Inter (Body/UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="about" class="about-page">
+
+  <a class="skip-link" href="#about-main">Skip to content</a>
+
+  <!-- Top Sticky Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html#home" class="brand" aria-label="Nursing Notebook Home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+        </span>
+        <span>Nursing Notebook</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="index.html#questions">Questions</a></li>
+          <li class="nav-item"><a href="about.html" class="active">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#questions">Questions</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="index.html#home">Home</a><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item breadcrumb-current" aria-current="page">About</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-content" id="about-main">
+    <div class="container" style="max-width: 880px;">
+
+      <div class="hero-section about-intro">
+        <span class="hero-eyebrow">Academic Initiative</span>
+        <h1 class="hero-title">About Nursing Notebook</h1>
+        <p class="hero-description">
+          A dedicated, academic archive providing nursing students with access to verified previous year examination papers under Rajshahi Medical University (RMU).
+        </p>
+      </div>
+
+      <!-- Animated Academic Feature Card -->
+      <div class="animated-feature-card about-feature lottie-host">
+        <div id="about-lottie-box" class="lottie-container" data-lottie="doctor" aria-hidden="true"></div>
+        <div class="animated-card-content">
+          <span class="animated-card-badge">
+            <span class="animated-pulse-dot"></span>
+            <span>Digitized Academic Archive</span>
+          </span>
+          <h3 class="animated-card-title">Empowering Nursing Scholars</h3>
+          <p class="animated-card-desc">Preserving curriculum integrity and delivering open access to official Rajshahi Medical University examination papers.</p>
+        </div>
+      </div>
+
+      <!-- Live statistics (computed from data.js) -->
+      <div id="about-stats"></div>
+
+      <!-- What we stand for -->
+      <section class="home-section" aria-labelledby="values-heading">
+        <div class="section-header reveal">
+          <h2 id="values-heading" class="section-title">What We Stand For</h2>
+          <span class="section-subtitle">Built for students</span>
+        </div>
+        <div id="about-values"></div>
+      </section>
+
+      <!-- About Section 1: Overview & Scope -->
+      <article class="about-card reveal">
+        <h2>Mission &amp; Project Scope</h2>
+        <p>
+          <strong>Nursing Notebook</strong> is developed to streamline academic exam preparation for students enrolled in the <strong>B.Sc. in Nursing</strong> degree program affiliated with <strong>Rajshahi Medical University (RMU)</strong>.
+        </p>
+        <p>
+          Accessing authentic past questions has traditionally been challenging due to scattered files and inconsistent archives. This project organizes verified examination question papers by academic year, curriculum sequence, subject code, and exam type.
+        </p>
+        <p>
+          <strong>Phase 1 Scope:</strong> The current phase covers the complete 1st Year curriculum, hosting <strong><span data-stat="totalPapers">&nbsp;</span> verified examination papers</strong> across <span data-stat="subjectsWithContent">&nbsp;</span> subjects spanning <span data-stat="examRange">&nbsp;</span>.
+        </p>
+      </article>
+
+      <!-- How to use -->
+      <section class="home-section" aria-labelledby="how-heading">
+        <div class="section-header reveal">
+          <h2 id="how-heading" class="section-title">How to Use the Archive</h2>
+          <span class="section-subtitle">Three simple steps</span>
+        </div>
+        <div id="about-steps"></div>
+      </section>
+
+      <!-- About Section 2: Examination Paper Structure -->
+      <section class="home-section" aria-labelledby="structure-heading">
+        <div class="section-header reveal">
+          <h2 id="structure-heading" class="section-title">Examination Paper Structure</h2>
+          <span class="section-subtitle">Official RMU format by year</span>
+        </div>
+        <div id="about-paper-types"></div>
+        <article class="about-card reveal" style="margin-top: 20px;">
+          <ul>
+            <li><strong>2019 to 2024:</strong> Both <em>Written</em> and <em>MCQ (Multiple Choice Questions)</em> papers are available for each subject.</li>
+            <li><strong>2018:</strong> <em>Written</em> papers were administered under the foundational examination format.</li>
+          </ul>
+          <p>
+            Every paper link connects directly to high-resolution, verified documents hosted securely on Google Drive for immediate viewing or offline study.
+          </p>
+        </article>
+      </section>
+
+      <!-- Roadmap -->
+      <section class="home-section" aria-labelledby="roadmap-heading">
+        <div class="section-header reveal">
+          <h2 id="roadmap-heading" class="section-title">Phased Rollout</h2>
+          <span class="section-subtitle">1st Year is live</span>
+        </div>
+        <div id="about-roadmap"></div>
+      </section>
+
+      <!-- About Section 3: Curriculum Structure -->
+      <article class="about-card reveal">
+        <h2>B.Sc. in Nursing Curriculum</h2>
+        <p>
+          The 4-year undergraduate curriculum consists of <span data-stat="totalSubjects">&nbsp;</span> comprehensive subjects classified across General, Foundational, and Professional domains:
+        </p>
+
+        <div style="overflow-x: auto; margin-top: 18px;">
+          <table class="metadata-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Subjects</th>
+                <th>Total Papers</th>
+                <th>Current Status</th>
+              </tr>
+            </thead>
+            <tbody id="about-curriculum-body"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- FAQ -->
+      <section class="home-section" aria-labelledby="faq-heading">
+        <div class="section-header reveal">
+          <h2 id="faq-heading" class="section-title">Frequently Asked Questions</h2>
+          <span class="section-subtitle">Quick answers</span>
+        </div>
+        <div id="about-faq" class="reveal"></div>
+      </section>
+
+      <!-- About Section 4: Academic Integrity -->
+      <article class="about-card reveal">
+        <h2>Content Integrity &amp; Open Access</h2>
+        <p>
+          All course codes, subject titles, and sequence numbers strictly follow the syllabus set by Rajshahi Medical University. No synthetic or unverified question papers are included.
+        </p>
+        <p>
+          This archive is strictly for educational, non-commercial purposes to aid nursing scholars, educators, and candidates in understanding examination patterns and question trends.
+        </p>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <span class="footer-brand">Nursing Notebook</span> &mdash;
+        <span>Rajshahi Medical University (RMU)</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#questions">Questions</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts (all local, works offline via file://) -->
+  <script src="assets/lottie.min.js"></script>
+  <script src="assets/animations-bundle.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
