@@ -1,153 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f2e7">
-  <meta name="description" content="About Nursing Notebook: a free archive of RMU B.Sc. Nursing past question papers.">
-  <title>About - Nursing Notebook</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg-color:#f7f2e7;--card-bg:#fffdf9;--text-main:#1f1a17;--text-muted:#5e5852;--accent-red:#c93b2b;--border-color:#2b2520}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background-color:var(--bg-color);color:var(--text-main);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;display:flex;justify-content:center;padding:40px 16px;min-height:100vh}
-    .container{width:100%;max-width:440px;text-align:center}
-    .topnav{display:flex;justify-content:center;gap:18px;margin-bottom:26px;font-size:.85rem;font-weight:700;flex-wrap:wrap}
-    .topnav a{color:#55504a;text-decoration:none;letter-spacing:.4px}
-    .topnav a:hover,.topnav a.on{color:var(--accent-red);text-decoration:underline;text-underline-offset:4px}
-    .brand-title{font-size:2rem;font-weight:800;letter-spacing:-.5px;margin-bottom:6px;color:var(--text-main)}
-    .tagline{font-size:1rem;color:var(--text-muted);line-height:1.4;margin-bottom:24px}
-    .quote-box{border-top:1px solid rgba(0,0,0,.08);padding-top:16px;margin-bottom:28px}
-    .quote-text{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.15rem;font-weight:600;color:var(--text-main);margin-bottom:4px}
-    .quote-sub{font-size:.85rem;color:var(--text-muted)}
-    .coupon-box{border:1.5px dashed var(--border-color);border-radius:4px;padding:24px 18px 20px;position:relative;background:var(--card-bg);margin-bottom:28px}
-    .scissor-icon{position:absolute;top:-12px;right:22px;background:var(--card-bg);padding:0 4px;font-size:1.1rem;line-height:1;color:var(--border-color)}
-    .bio-desc{font-size:.95rem;line-height:1.55;color:var(--text-main);margin-bottom:20px;font-weight:500}
-    .action-row{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
-    .btn-dark{flex:1;background:#1f1b18;color:#fff;padding:10px 14px;border-radius:8px;font-size:.95rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;transition:transform .1s}
-    .btn-outline{flex:1;background:#fff;color:#1f1b18;border:1.5px solid #1f1b18;padding:10px 14px;border-radius:8px;font-size:.95rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;transition:transform .1s}
-    .btn-dark:active,.btn-outline:active{transform:scale(.97)}
-    .btn-coffee{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#fbc02d;border:1.5px solid #1f1b18;padding:10px 24px;border-radius:8px;font-size:.95rem;font-weight:700;color:#1f1b18;cursor:pointer;margin-bottom:8px;width:100%;min-height:44px;transition:transform .1s;font-family:inherit}
-    .btn-coffee:active{transform:scale(.98)}
-    .donation-section{display:none;margin-top:14px;animation:fadeIn .2s ease-in-out}
-    .donation-section.show{display:block}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-    .sub-divider{border-top:1px dashed rgba(0,0,0,.18);margin:16px 0 14px}
-    .archive-note{font-size:.88rem;font-weight:500;color:var(--text-muted);margin-bottom:12px}
-    .send-money-wrapper{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
-    .send-money-label{font-size:.9rem;font-weight:700;color:var(--text-main)}
-    .number-pill{border:2px solid #1f1b18;border-radius:8px;padding:6px 14px;font-size:1.1rem;font-weight:800;letter-spacing:.5px;background:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:8px;user-select:all}
-    .copy-btn{background:#1f1b18;color:#fff;border:none;border-radius:6px;padding:6px 10px;font-size:.75rem;font-weight:600;cursor:pointer;font-family:inherit}
-    .copy-toast{display:block;font-size:.75rem;color:#166534;font-weight:600;margin-top:6px;opacity:0;transition:opacity .2s ease}
-    .copy-toast.active{opacity:1}
-    .purpose-box{text-align:left;background:rgba(0,0,0,.02);border-left:3px solid #1f1b18;padding:12px 14px;margin-bottom:20px;border-radius:0 6px 6px 0}
-    .purpose-title{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:var(--text-main)}
-    .purpose-text{font-size:.9rem;color:var(--text-muted);line-height:1.5}
-    .purpose-text ul{padding-left:18px}.purpose-text li{margin:3px 0}
-    .stats{display:flex;gap:8px;margin-bottom:20px}
-    .stat{flex:1;background:var(--card-bg);border:1.5px dashed var(--border-color);border-radius:4px;padding:12px 6px}
-    .stat b{display:block;font-size:1.4rem;font-weight:800}.stat span{font-size:.72rem;color:var(--text-muted);font-weight:600;letter-spacing:.3px}
-    .faq{text-align:left;margin-bottom:28px}
-    .faq details{background:var(--card-bg);border:1px solid rgba(0,0,0,.12);border-radius:6px;padding:10px 14px;margin-bottom:8px}
-    .faq summary{cursor:pointer;font-weight:700;font-size:.9rem}
-    .faq p{font-size:.88rem;color:var(--text-muted);line-height:1.5;margin-top:6px}
-    .links-list{display:flex;flex-direction:column;gap:16px;text-align:center}
-    .link-row{display:flex;justify-content:center;align-items:center;gap:12px;font-size:.95rem;flex-wrap:wrap}
-    .link-label{font-weight:800;letter-spacing:.8px;color:#55504a;font-size:.8rem}
-    .link-target{color:var(--accent-red);text-decoration:underline;text-underline-offset:3px;font-weight:600}
-    .foot{margin-top:30px;font-size:.78rem;color:var(--text-muted)}
-    .rv{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}.rv.in{opacity:1;transform:none}
-    @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.donation-section{animation:none}}
-  </style>
-</head>
-<body>
-  <div class="container">
-    <nav class="topnav" aria-label="Main"><a href="index.html#home">HOME</a><a href="index.html#questions">QUESTIONS</a><a href="exam-system.html">EXAM SYSTEM</a><a href="about.html" class="on">ABOUT</a></nav>
-
-    <h1 class="brand-title">Nursing Notebook</h1>
-    <p class="tagline">Founded &amp; maintained by a Nursing Student from The Rafey Nursing College, Bogura.</p>
-
-    <div class="quote-box">
-      <div class="quote-text">"Dedicated to free and accessible education."</div>
-      <div class="quote-sub">built for 1st year, 2nd year, and all nursing students</div>
-    </div>
-
-    <div class="coupon-box">
-      <div class="scissor-icon">&#9986;</div>
-      <p class="bio-desc">Created solely to provide students with past examination papers, solutions, and academic resources completely free of charge.</p>
-      <div class="action-row">
-        <a href="mailto:tukitaki2025@gmail.com" class="btn-dark">Email me</a>
-        <a href="https://t.me/nursing_N0TE" target="_blank" rel="noopener noreferrer" class="btn-outline">Telegram</a>
-      </div>
-      <button class="btn-coffee" id="donateToggleBtn" aria-expanded="false" aria-controls="donationSection"><span>☕</span> Donate / Support</button>
-      <div class="donation-section" id="donationSection">
-        <div class="sub-divider"></div>
-        <p class="archive-note">Every contribution helps keep the archive updated.</p>
-        <div class="send-money-wrapper">
-          <span class="send-money-label">bKash / Nagad (Send Money):</span>
-          <div class="number-pill" id="copyBox" title="Click to copy">
-            <span id="targetNumber">01764386880</span>
-            <button class="copy-btn" id="copyBtn" aria-label="Copy payment number">Copy</button>
-          </div>
-        </div>
-        <span class="copy-toast" id="copyNotice" role="status">Copied!</span>
-      </div>
-    </div>
-
-    <div class="stats rv" aria-label="Archive statistics">
-      <div class="stat"><b id="sPapers">0</b><span>PAPERS</span></div>
-      <div class="stat"><b id="sSubjects">0</b><span>SUBJECTS</span></div>
-      <div class="stat"><b>8</b><span>EXAM YEARS</span></div>
-    </div>
-
-    <div class="purpose-box rv">
-      <div class="purpose-title">Our Objective</div>
-      <p class="purpose-text">As a fellow nursing student, this platform was built with a single mission: to archive and provide previous years' question banks and study materials at zero cost for 1st Year, 2nd Year, and all prospective students across Bangladesh.</p>
-    </div>
-
-    <div class="purpose-box rv">
-      <div class="purpose-title">What You Will Find</div>
-      <div class="purpose-text"><ul>
-        <li>Written and MCQ question papers, 2018 to 2025</li>
-        <li>Papers sorted by year and subject, with subject codes</li>
-        <li>Rajshahi Medical University (RMU) papers for B.Sc. in Nursing</li>
-        <li>A short guide to the BNMC 2024 exam system, with the official PDF</li>
-      </ul></div>
-    </div>
-
-    <div class="faq rv">
-      <div class="purpose-title" style="margin-bottom:8px">Quick Answers</div>
-      <details><summary>Is it really free?</summary><p>Yes. Every paper is free to view and always will be.</p></details>
-      <details><summary>Why does a paper say "Coming soon"?</summary><p>It has not been collected yet. It will appear once it is added.</p></details>
-      <details><summary>Can I send a missing paper?</summary><p>Yes. Message us on Telegram or email, and we will add it.</p></details>
-      <details><summary>A link is not opening. What now?</summary><p>Tell us on Telegram or Facebook, and we will fix it.</p></details>
-    </div>
-
-    <div class="links-list">
-      <div class="link-row"><span class="link-label">FACEBOOK</span><a href="https://www.facebook.com/profile.php?id=61595863536930" target="_blank" rel="noopener noreferrer" class="link-target">Nursing Notebook Page</a></div>
-      <div class="link-row"><span class="link-label">TELEGRAM</span><a href="https://t.me/nursing_N0TE" target="_blank" rel="noopener noreferrer" class="link-target">@nursing_N0TE</a></div>
-      <div class="link-row"><span class="link-label">EMAIL</span><a href="mailto:tukitaki2025@gmail.com" class="link-target">tukitaki2025@gmail.com</a></div>
-    </div>
-    <p class="foot">Nursing Notebook · Rajshahi Medical University (RMU) · B.Sc. in Nursing</p>
-  </div>
-
-  <script src="data.js"></script>
-  <script>
-    const btn=document.getElementById('donateToggleBtn'),sec=document.getElementById('donationSection');
-    btn.addEventListener('click',()=>{const v=sec.classList.toggle('show');btn.setAttribute('aria-expanded',v?'true':'false')});
-    const num=document.getElementById('targetNumber').innerText.trim(),cb=document.getElementById('copyBtn'),note=document.getElementById('copyNotice');
-    function done(){cb.innerText='Copied!';note.classList.add('active');setTimeout(()=>{cb.innerText='Copy';note.classList.remove('active')},2000)}
-    function fallback(){try{const t=document.createElement('textarea');t.value=num;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();done()}catch(e){note.textContent='Copy failed';note.classList.add('active')}}
-    function copyNum(){navigator.clipboard?navigator.clipboard.writeText(num).then(done).catch(fallback):fallback()}
-    document.getElementById('copyBox').addEventListener('click',copyNum);
-    // live stats from data.js
-    let p=0,s=0;PROGRAM.forEach(y=>y.subjects.forEach(x=>{const n=Object.values(x.papers).reduce((a,l)=>a+l.length,0);p+=n;if(n)s++}));
-    document.getElementById('sPapers').textContent=p;document.getElementById('sSubjects').textContent=s;
-    // reveal on scroll
-    const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
-    document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-  </script>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f2e7">
+<meta name="description" content="About Nursing Notebook: a free archive of RMU B.Sc. Nursing past question papers.">
+<title>About - Nursing Notebook</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header class="top"><div class="top-in"><a class="brand" href="index.html#home"><span class="mark">📘</span>Nursing Notebook</a>
+<nav class="dnav" aria-label="Main"><a href="index.html#home">Home</a><a href="index.html#questions">Questions</a><a href="exam-system.html">Exam System</a><a href="about.html" class="on">About</a></nav></div></header>
+<main><div class="ab page">
+<h1 class="ab-t">Nursing Notebook</h1>
+<p class="ab-tag">Founded &amp; maintained by a Nursing Student from The Rafey Nursing College, Bogura.</p>
+<div class="ab-q"><div class="ab-qt">"Dedicated to free and accessible education."</div><div class="ab-qs">built for 1st year, 2nd year, and all nursing students</div></div>
+<div class="coupon"><div class="scis">&#9986;</div>
+<p class="ab-bio">Created solely to provide students with past examination papers and academic resources completely free of charge.</p>
+<div class="ab-row"><a href="mailto:tukitaki2025@gmail.com" class="b-dark">Email me</a><a href="https://t.me/nursing_N0TE" target="_blank" rel="noopener noreferrer" class="b-out">Telegram</a></div>
+<button class="b-cof" id="dt" aria-expanded="false" aria-controls="ds"><span>☕</span> Donate / Support</button>
+<div class="dsec" id="ds"><div class="sdiv"></div><p class="ab-note">Every contribution helps keep the archive updated.</p>
+<div class="sm"><span class="sm-l">bKash / Nagad (Send Money):</span><div class="npill"><span id="num"></span><button class="cbtn" id="cb" aria-label="Copy payment number">Copy</button></div></div>
+<span class="cnote" id="cn" role="status">Copied!</span></div></div>
+<div class="stats" aria-label="Archive statistics"><div class="stat"><b id="sP">0</b><span>Papers</span></div><div class="stat"><b id="sS">0</b><span>Subjects</span></div><div class="stat"><b id="sY">0</b><span>Exam years</span></div></div>
+<div class="purpose"><div class="pt">Our Objective</div><p>As a fellow nursing student, this platform was built with a single mission: to archive and provide previous years' question banks and study materials at zero cost for 1st Year, 2nd Year, and all prospective students across Bangladesh.</p></div>
+<div class="purpose"><div class="pt">What You Will Find</div><ul><li>Written and MCQ question papers, 2018 to 2025</li><li>Papers sorted by year and subject, with subject codes</li><li>Rajshahi Medical University (RMU) papers for B.Sc. in Nursing</li><li>A short guide to the BNMC 2024 exam system, with the official PDF</li></ul></div>
+<div class="faq"><div class="pt" style="margin-bottom:8px">Quick Answers</div>
+<details class="f"><summary>Is it really free?</summary><p>Yes. Every paper is free to view and always will be.</p></details>
+<details class="f"><summary>Why does a paper say "Coming soon"?</summary><p>It has not been collected yet. It will appear once it is added.</p></details>
+<details class="f"><summary>Can I send a missing paper?</summary><p>Yes. Message us on Telegram or email, and we will add it.</p></details>
+<details class="f"><summary>A link is not opening. What now?</summary><p>Tell us on Telegram or Facebook, and we will fix it.</p></details></div>
+<div class="links"><div class="lr"><span class="ll">FACEBOOK</span><a class="lt" href="https://www.facebook.com/profile.php?id=61595863536930" target="_blank" rel="noopener noreferrer">Nursing Notebook Page</a></div>
+<div class="lr"><span class="ll">TELEGRAM</span><a class="lt" href="https://t.me/nursing_N0TE" target="_blank" rel="noopener noreferrer">@nursing_N0TE</a></div>
+<div class="lr"><span class="ll">EMAIL</span><a class="lt" href="mailto:tukitaki2025@gmail.com">tukitaki2025@gmail.com</a></div></div>
+</div></main>
+<footer>Nursing Notebook — Rajshahi Medical University (RMU) · B.Sc. in Nursing</footer>
+<nav class="bnav" aria-label="Main"><a href="index.html#home"><span>🏠</span>Home</a><a href="index.html#questions"><span>📝</span>Questions</a><a href="exam-system.html"><span>🎯</span>Exam</a><a href="about.html" class="on"><span>ℹ️</span>About</a></nav>
+<script src="data.js"></script>
+<script>
+const $=s=>document.getElementById(s);$('num').textContent=PAY_NUMBER;
+$('dt').onclick=()=>{const v=$('ds').classList.toggle('show');$('dt').setAttribute('aria-expanded',v)};
+function ok(){$('cb').textContent='Copied!';$('cn').classList.add('on');setTimeout(()=>{$('cb').textContent='Copy';$('cn').classList.remove('on')},2000)}
+function fb(){try{const t=document.createElement('textarea');t.value=PAY_NUMBER;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();ok()}catch(e){$('cn').textContent='Copy failed';$('cn').classList.add('on')}}
+$('cb').onclick=()=>navigator.clipboard?navigator.clipboard.writeText(PAY_NUMBER).then(ok).catch(fb):fb();
+let p=0,s=0;PROGRAM.forEach(y=>y.subjects.forEach(x=>{const n=Object.values(x.papers).reduce((a,l)=>a+l.length,0);p+=n;if(n)s++}));
+$('sP').textContent=p;$('sS').textContent=s;$('sY').textContent=EXAM_YEARS.length;
+</script></body></html>

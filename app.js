@@ -32,7 +32,7 @@ function list(){const q=qs.trim().toLowerCase();let h='',i=0;
 function setList(){$('#list').innerHTML=list();lot('l-empty','medicalCare')}
 function view(r,p){lots.forEach(l=>l.destroy());lots=[];const el=$('#app');let h='';
   if(r==='home'){h=`<div class="page"><section class="hero"><h1>RMU B.Sc. Nursing Question Bank</h1><p>Past board exam papers, Written and MCQ, organized by year and subject. Open any paper in two taps.</p><div class="lot" id="l-hero"></div><a class="cta" href="#questions">Browse Questions →</a></section>
-<div class="stats"><div class="stat rv"><b data-n="${total}">0</b><span>Papers</span></div><div class="stat rv"><b data-n="${PROGRAM.reduce((a,y)=>a+y.subjects.length,0)}">0</b><span>Subjects</span></div><div class="stat rv"><b data-n="8">0</b><span>Exam years</span></div></div>
+<div class="stats"><div class="stat rv"><b data-n="${total}">0</b><span>Papers</span></div><div class="stat rv"><b data-n="${PROGRAM.reduce((a,y)=>a+y.subjects.filter(x=>cnt(x)).length,0)}">0</b><span>Subjects</span></div><div class="stat rv"><b data-n="${EXAM_YEARS.length}">0</b><span>Exam years</span></div></div>
 <h2 class="sec rv">Jump to your year</h2><div class="yg">${PROGRAM.map((y,i)=>`<a class="yc y${i} rv" href="#questions/${i}"><b>${y.label}</b><small>${ycnt(y)?ycnt(y)+' papers':'Coming soon'}</small></a>`).join('')}</div>
 <h2 class="sec rv">How it works</h2><div class="steps"><div class="step rv"><i>1</i>Pick your year</div><div class="step rv"><i>2</i>Tap a subject</div><div class="step rv"><i>3</i>Open Written or MCQ</div></div>${donate()}</div>`}
   else if(r==='questions'){if(p!==undefined&&PROGRAM[p])qy=+p;
