@@ -14,7 +14,7 @@ function crumbs(){
 function render(){
   crumbs();const el=$('content');
   if(route.v==='home'){
-    const total=PROGRAM.reduce((a,y)=>a+y.subjects.reduce((b,s)=>b+Object.values(s.papers).reduce((c,p)=>c+Object.keys(p).length,0),0),0);
+    const total=PROGRAM.reduce((a,y)=>a+y.subjects.reduce((b,s)=>b+Object.values(s.papers).reduce((c,p)=>c+p.length,0),0),0);
     el.innerHTML=`<section class="hero"><h1>B.Sc. in Nursing</h1><p>Past board exam questions organized by academic year and subject, for quick and focused revision.</p>
     <div class="stats"><span class="stat">${total} question papers</span><span class="stat">${UNIVERSITY}</span></div></section>
     <div class="grid">${PROGRAM.map((y,i)=>`<button class="card" onclick="go({v:'year',y:${i}})"><span><span class="t">${y.label}</span><span class="s">${y.subjects.length} subjects</span></span><span class="pill ${yearLive(y)?'live':'soon'}">${yearLive(y)?'Available':'Coming soon'}</span></button>`).join('')}</div>
@@ -27,7 +27,7 @@ function render(){
   const y=PROGRAM[route.y],s=y.subjects[route.s];
   el.innerHTML=`<h2>${s.name}</h2><p style="color:var(--soft)">${s.code} · Select a year to open the Written or MCQ paper.</p><div class="list">`+
   EXAM_YEARS.map(e=>{const p=s.papers[e];
-    const o=p?`${p.written?`<a class="btn" target="_blank" rel="noopener" href="${p.written}">Written</a>`:''}${p.mcq?`<a class="btn" target="_blank" rel="noopener" href="${p.mcq}">MCQ</a>`:''}`:`<span style="color:var(--soft);font-size:.88rem">This paper has not been added yet.</span>`;
+    const o=p?p.map(q=>`<a class="btn" target="_blank" rel="noopener" href="${q.l}">${q.t}${q.s?' ('+q.s+')':''}</a>`).join(''):`<span style="color:var(--soft);font-size:.88rem">This paper has not been added yet.</span>`;
     return `<div class="row" id="r${e}"><button onclick="tog(${e})"><span class="yr">${e}</span><span class="pill ${p?'live':'soon'}">${p?'Available':'Coming soon'}</span></button><div class="opts">${o}</div></div>`}).join('')+'</div>';
 }
 function tog(e){const r=$('r'+e),w=r.classList.contains('open');document.querySelectorAll('.row.open').forEach(x=>x.classList.remove('open'));if(!w)r.classList.add('open')}
