@@ -1221,6 +1221,7 @@ const PROGRAM=[
    {
     "name": "Laws Ethics and Forensic Nursing",
     "code": "B237",
+    "new": true,
     "papers": {}
    }
   ]
@@ -1297,4 +1298,4 @@ const CONTACT={email:'tukitaki2025@gmail.com',facebook:'https://www.facebook.com
 const BNMC_PDF='1DAQvOobTbc7CH7mb1bfr5nTkQHFhLpCe';
 const EXAM={"1": [["B111", "Communicative English", 4.0, 60, 100], ["B112", "Nursing Informatics", 4.5, 60, 100], ["B113", "Behavioral Science & Humanities", 6.0, 90, 150], ["B124", "Anatomy", 7.5, 90, 150], ["B125", "Physiology", 7.5, 90, 150], ["B126", "Microbiology and Pathology", 5.75, 90, 150], ["B137", "Fundamentals of Nursing–I", 22.63, 90, 200]], "2": [["B231", "Fundamentals of Nursing–II", 11.13, 90, 200], ["B232", "Pediatric Nursing", 8.37, 90, 200], ["B233", "Medical and Surgical Nursing–I", 11.75, 90, 200], ["B224", "Pharmacology", 2.87, 60, 100], ["B235", "Traumatology & Orthopedic Nursing", 9.37, 90, 200], ["B226", "Nutrition and Biochemistry", 3.88, 90, 150], ["B237", "Laws, Ethics & Forensic Nursing", 3.0, 60, 100]], "3": [["B331", "Geriatric Nursing", 5.37, 90, 150], ["B332", "Mental Health & Psychiatric Nursing", 8.0, 90, 200], ["B333", "Emergency & Critical Care Nursing", 10.25, 90, 200], ["B334", "Medical and Surgical Nursing–II", 14.5, 90, 200], ["B335", "Community Health & Epidemiology", 11.0, 90, 200]], "4": [["B431", "Midwifery", 14.0, 90, 200], ["B432", "Obstetrical & Gynecological Nursing", 11.75, 90, 200], ["B433", "Nursing Administration & Management", 6.0, 60, 100], ["B434", "Nursing Education", 6.88, 90, 200], ["B435", "Research and Biostatistics", 5.87, 90, 200], ["B416", "Advanced Communicative English", 4.5, 60, 100]]};
 const CAT={1:'General',2:'Foundational',3:'Professional'};
-const YSUM={1:{th:'624 hrs (39 Cr)',lab:'348 hrs (10.88 Cr)',cl:'384 hrs (8 Cr)',tot:'1,356 hrs · 57.88 Cr',m:1000},2:{th:'432 hrs (27 Cr)',lab:'108 hrs (3.37 Cr)',cl:'960 hrs (20 Cr)',tot:'1,500 hrs · 50.37 Cr',m:1150},3:{th:'396 hrs (24.75 Cr)',lab:'108 hrs (3.37 Cr)',cl:'1,008 hrs (21 Cr)',tot:'1,512 hrs · 49.12 Cr',m:950},4:{th:'360 hrs (22.5 Cr)',lab:'144 hrs (4.5 Cr)',cl:'1,056 hrs (22 Cr)',tot:'1,560 hrs · 49 Cr',m:1000}};
+const YSUM={1:{th:'624 hrs (39 Credit)',lab:'348 hrs (10.88 Credit)',cl:'384 hrs (8 Credit)',tot:'1,356 hrs · 57.88 Credit',m:1000},2:{th:'432 hrs (27 Credit)',lab:'108 hrs (3.37 Credit)',cl:'960 hrs (20 Credit)',tot:'1,500 hrs · 50.37 Credit',m:1150},3:{th:'396 hrs (24.75 Credit)',lab:'108 hrs (3.37 Credit)',cl:'1,008 hrs (21 Credit)',tot:'1,512 hrs · 49.12 Credit',m:950},4:{th:'360 hrs (22.5 Credit)',lab:'144 hrs (4.5 Credit)',cl:'1,056 hrs (22 Credit)',tot:'1,560 hrs · 49 Credit',m:1000}};
