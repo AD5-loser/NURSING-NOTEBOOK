@@ -101,3 +101,4 @@ It is a static site, so any static host works (for example GitHub Pages: push th
 - Facebook: https://www.facebook.com/profile.php?id=61595863536930
 
 Missing paper or broken link? Send it on Telegram or email and it will be added.
+https://ad5-loser.github.io/NURSING-NOTEBOOK/
