@@ -119,3 +119,8 @@ footer{text-align:center;font-size:.8rem;color:var(--soft);padding:10px 16px 20p
 .lr{display:flex;justify-content:center;align-items:center;gap:12px;font-size:.95rem;flex-wrap:wrap}
 .ll{font-weight:800;letter-spacing:.8px;color:#55504a;font-size:.8rem}
 .lt{color:var(--red);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+
+/* Crawlable subject links */
+.sublinks{max-width:880px;margin:0 auto;padding:6px 16px 18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem}
+.sublinks b{width:100%;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:#55504a}
+.sublinks a{color:var(--soft);text-underline-offset:3px}

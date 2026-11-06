@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nursing-notebook.vercel.app/sitemap.xml

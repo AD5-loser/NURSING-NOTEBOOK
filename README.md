@@ -21,7 +21,11 @@ about.html         About, FAQ, donate, contact
 style.css          Shared design (all pages)
 app.js             Rendering and routing for index.html
 data.js            All site data (subjects, paper links, settings)
-tools/build_data.py  Rebuilds paper links in data.js from the master CSV
+tools/build_data.py   Rebuilds paper links in data.js from the master CSV
+tools/build_pages.py  Generates SEO files from data.js (subject pages, sitemap, robots)
+subject/*.html     Generated, crawlable page per subject (do not edit by hand)
+sitemap.xml        Generated
+robots.txt         Generated
 ```
 
 Routes on `index.html`: `#home`, `#questions`, `#questions/<year index>` (0 = 1st Year ... 3 = 4th Year).
@@ -51,6 +55,13 @@ The master CSV is the single source of truth. Columns:
    ```
 
 4. The script keeps subject names, codes and settings in `data.js` and only rewrites the paper links. It stops with an error if the CSV contains a subject code that is not in `data.js`.
+5. Regenerate the SEO files, then deploy:
+
+   ```
+   python3 tools/build_pages.py
+   ```
+
+   This rewrites `subject/*.html`, `sitemap.xml`, `robots.txt`, the meta tags, and the static fallback text in `index.html` and `exam-system.html`. Always run it after `build_data.py`, otherwise search engines see old paper lists.
 
 ### Paper data format (in `data.js`)
 
@@ -84,9 +95,17 @@ All pages share `style.css`. Main tokens (CSS variables on `:root`):
 
 Cards use dashed borders ("coupon" look). Icons are inline SVG that inherit the text colour.
 
+## SEO
+
+- Live site: https://nursing-notebook.vercel.app
+- `robots.txt` allows all crawlers and points to `sitemap.xml`.
+- Each subject has its own URL (`/subject/b124.html`) with its own title, description and canonical link, because crawlers ignore `#hash` routes.
+- `index.html` and `exam-system.html` contain static text, so pages are readable without JavaScript. The script replaces it when JavaScript runs.
+- After deploying, submit `https://nursing-notebook.vercel.app/sitemap.xml` in Google Search Console.
+
 ## Deploy
 
-It is a static site, so any static host works (for example GitHub Pages: push the folder contents to the repository root and enable Pages for the main branch).
+It is a static site with no build step on the host, so any static host works. It is currently served on Vercel: deploy the folder as a static project (framework preset: Other, no build command).
 
 ## Known limits
 
@@ -101,4 +120,3 @@ It is a static site, so any static host works (for example GitHub Pages: push th
 - Facebook: https://www.facebook.com/profile.php?id=61595863536930
 
 Missing paper or broken link? Send it on Telegram or email and it will be added.
-https://ad5-loser.github.io/NURSING-NOTEBOOK/
