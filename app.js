@@ -1,41 +1,48 @@
-let route={v:'home'};
-const $=id=>document.getElementById(id);
-const hasPapers=s=>Object.keys(s.papers).length>0;
-const yearLive=y=>y.subjects.some(hasPapers);
-function go(r){route=r;render();window.scrollTo({top:0,behavior:'smooth'})}
-function crumbs(){
-  const c=$('crumbs');if(route.v==='home'){c.style.display='none';return}
-  c.style.display='block';const y=PROGRAM[route.y],s=y&&y.subjects[route.s];
-  let h='<button onclick="go({v:\'home\'})">B.Sc. in Nursing</button>';
-  if(route.v==='year')h+=' › <b>'+y.label+'</b>';
-  if(route.v==='subject')h+=' › <button onclick="go({v:\'year\',y:'+route.y+'})">'+y.label+'</button> › <b>'+s.name+'</b>';
-  c.firstElementChild.innerHTML=h;
-}
-function render(){
-  crumbs();const el=$('content');
-  if(route.v==='home'){
-    const total=PROGRAM.reduce((a,y)=>a+y.subjects.reduce((b,s)=>b+Object.values(s.papers).reduce((c,p)=>c+p.length,0),0),0);
-    el.innerHTML=`<section class="hero"><h1>B.Sc. in Nursing</h1><p>Past board exam questions organized by academic year and subject, for quick and focused revision.</p>
-    <div class="stats"><span class="stat">${total} question papers</span><span class="stat">${UNIVERSITY}</span></div></section>
-    <div class="grid">${PROGRAM.map((y,i)=>`<button class="card" onclick="go({v:'year',y:${i}})"><span><span class="t">${y.label}</span><span class="s">${y.subjects.length} subjects</span></span><span class="pill ${yearLive(y)?'live':'soon'}">${yearLive(y)?'Available':'Coming soon'}</span></button>`).join('')}</div>
-    ${donate()}`;return}
-  if(route.v==='year'){
-    const y=PROGRAM[route.y];
-    el.innerHTML=`<h2>${y.label}</h2><p style="color:var(--soft)">Select a subject to view its questions.</p>`+
-    (yearLive(y)?`<div class="grid">${y.subjects.map((s,i)=>`<button class="card" onclick="go({v:'subject',y:${route.y},s:${i}})"><span><span class="t">${s.name}</span><span class="s">${s.code}</span></span><span class="pill ${hasPapers(s)?'live':'soon'}">${hasPapers(s)?Object.keys(s.papers).length+' yrs':'Soon'}</span></button>`).join('')}</div>`:
-    `<div class="empty"><h3>Coming soon</h3><p>Question papers for this year have not been added yet.</p></div>`);return}
-  const y=PROGRAM[route.y],s=y.subjects[route.s];
-  el.innerHTML=`<h2>${s.name}</h2><p style="color:var(--soft)">${s.code} · Select a year to open the Written or MCQ paper.</p><div class="list">`+
-  EXAM_YEARS.map(e=>{const p=s.papers[e];
-    const o=p?p.map(q=>`<a class="btn" target="_blank" rel="noopener" href="${q.l}">${q.t}${q.s?' ('+q.s+')':''}</a>`).join(''):`<span style="color:var(--soft);font-size:.88rem">This paper has not been added yet.</span>`;
-    return `<div class="row" id="r${e}"><button onclick="tog(${e})"><span class="yr">${e}</span><span class="pill ${p?'live':'soon'}">${p?'Available':'Coming soon'}</span></button><div class="opts">${o}</div></div>`}).join('')+'</div>';
-}
-function tog(e){const r=$('r'+e),w=r.classList.contains('open');document.querySelectorAll('.row.open').forEach(x=>x.classList.remove('open'));if(!w)r.classList.add('open')}
-function donate(){return `<section class="donate" aria-label="Donate / Support"><h2>Donate / Support</h2>
-<p>Education should be free and accessible to every nursing student. This archive is maintained voluntarily, and every contribution helps keep the archive updated.</p>
-<div class="pay"><span>bKash / Nagad (Send Money)</span><code id="num">${PAY_NUMBER}</code><button class="copy" id="cp" onclick="copyNum()" aria-label="Copy payment number">Copy</button></div></section>`}
-function copyNum(){const b=$('cp');
-  const done=()=>{b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1800)};
-  if(navigator.clipboard)navigator.clipboard.writeText(PAY_NUMBER).then(done).catch(()=>{b.textContent='Copy failed'});else b.textContent='Copy failed'}
-const PAY_NUMBER='01XXXXXXXXX'; // TODO: replace with your real bKash/Nagad number
-render();
+const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let qy=0,qs='',open=new Set(),lots=[];
+const cnt=s=>Object.values(s.papers).reduce((a,p)=>a+p.length,0);
+const ycnt=y=>y.subjects.reduce((a,s)=>a+cnt(s),0);
+const total=PROGRAM.reduce((a,y)=>a+ycnt(y),0);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function lot(id,key,loop=true){const c=document.getElementById(id);if(!c||!window.lottie||!ANIMATIONS[key])return;
+  lots.push(lottie.loadAnimation({container:c,renderer:'svg',loop,autoplay:!RM,animationData:ANIMATIONS[key]}))}
+function reveal(){const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach((el,i)=>{el.style.setProperty('--i',i%6);io.observe(el)})}
+function counters(){document.querySelectorAll('[data-n]').forEach(el=>{const n=+el.dataset.n;if(RM){el.textContent=n;return}let t0;
+  const f=t=>{t0=t0||t;const p=Math.min((t-t0)/900,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function social(){const l=[];if(CONTACT.facebook)l.push(`<a href="${esc(CONTACT.facebook)}" target="_blank" rel="noopener">Facebook</a>`);
+  if(CONTACT.telegram)l.push(`<a href="${esc(CONTACT.telegram)}" target="_blank" rel="noopener">Telegram</a>`);
+  if(CONTACT.email)l.push(`<a href="mailto:${esc(CONTACT.email)}">Email</a>`);return `<div class="soc">${l.join('')}</div>`}
+function tgd(){const v=$('#ds').classList.toggle('show');$('#dt').setAttribute('aria-expanded',v)}
+function donate(){return `<section class="donate rv"><button class="b-cof" id="dt" onclick="tgd()" aria-expanded="false" aria-controls="ds">☕ Buy the Backbencher a singara</button>
+<div class="dsec" id="ds"><div class="sdiv"></div><p class="dh">Your money is safe. Probably. 🥱</p><p>This archive is free, and I'm not planning to become rich from question papers.</p><p class="dhelp">Spotted a wrong question or a missing paper? Help me fix it. Contact me:</p>${social()}</div></section>`}
+function paperBtns(list){return list.map(q=>`<a class="pb ${q.t==='MCQ'?'m':''}" target="_blank" rel="noopener" href="${esc(q.l)}">${q.t}${q.s?' '+q.s.replace('Set ',''):''}</a>`).join('')}
+function subjHtml(s,yi,si,i){const id=yi+'-'+si,o=open.has(id),n=cnt(s);
+  const rows=s.new?'<div class="yr"><span class="na">New subject. No previous question papers exist.</span></div>':EXAM_YEARS.map(e=>{const p=s.papers[e];return `<div class="yr"><b>${e}</b><div class="bt">${p?paperBtns(p):'<span class="na">Coming soon</span>'}</div></div>`}).join('');
+  return `<div class="acc ${o?'open':''}" id="a${id}" style="--i:${i}"><button onclick="tg('${id}')" aria-expanded="${o}"><span class="nm">${esc(s.name)}<span class="cd"><i class="dot c${s.code[2]}"></i>${s.code} · ${CAT[s.code[2]]} Subject</span></span><span class="pill ${s.new?'nw':n?'live':'soon'}">${s.new?'New':n?n+' papers':'Soon'}</span><span class="chev">›</span></button><div class="body"><div>${rows}</div></div></div>`}
+function tg(id){open.has(id)?open.delete(id):open.add(id);const a=document.getElementById('a'+id);a.classList.toggle('open');a.firstElementChild.setAttribute('aria-expanded',open.has(id))}
+function list(){const q=qs.trim().toLowerCase();let h='',i=0;
+  PROGRAM.forEach((y,yi)=>{if(!q&&yi!==qy)return;y.subjects.forEach((s,si)=>{if(q&&!(s.name.toLowerCase().includes(q)||s.code.toLowerCase().includes(q)))return;h+=subjHtml(s,yi,si,i++)})});
+  if(!h)return `<div class="empty"><div class="lot" id="l-empty" style="width:150px"></div><p>No subjects found. Try another name or code.</p></div>`;
+  return h}
+function setList(){$('#list').innerHTML=list();lot('l-empty','medicalCare')}
+function view(r,p){lots.forEach(l=>l.destroy());lots=[];const el=$('#app');let h='';
+  if(r==='home'){h=`<div class="page"><section class="hero"><h1>RMU B.Sc. Nursing Question Bank</h1><p>Past board exam papers, Written and MCQ, organized by year and subject. Open any paper in two taps.</p><div class="lot" id="l-hero"></div><a class="cta" href="#questions">Browse Questions →</a></section>
+<div class="stats"><div class="stat rv"><b data-n="${total}">0</b><span>Papers</span></div><div class="stat rv"><b data-n="${PROGRAM.reduce((a,y)=>a+y.subjects.filter(x=>cnt(x)).length,0)}">0</b><span>Subjects</span></div><div class="stat rv"><b data-n="${EXAM_YEARS.length}">0</b><span>Exam years</span></div></div>
+<h2 class="sec rv">Jump to your year</h2><div class="yg">${PROGRAM.map((y,i)=>`<a class="yc y${i} rv" href="#questions/${i}"><b>${y.label}</b><small>${ycnt(y)?ycnt(y)+' papers':'Coming soon'}</small></a>`).join('')}</div>
+<h2 class="sec rv">How it works</h2><div class="steps"><div class="step rv"><i>1</i>Pick your year</div><div class="step rv"><i>2</i>Tap a subject</div><div class="step rv"><i>3</i>Open Written or MCQ</div></div>${donate()}</div>`}
+  else if(r==='questions'){if(p!==undefined&&PROGRAM[p])qy=+p;
+    h=`<div class="page"><h2>Question Papers</h2><p class="sub">${UNIVERSITY}</p><div style="height:12px"></div>
+<input class="search" id="q" type="search" placeholder="Search subject or code (e.g. Anatomy, B124)" aria-label="Search subjects" value="${esc(qs)}">
+<details class="f"><summary>How subject codes work</summary><p><b>B</b> = B.Sc. in Nursing. Digit 1 = year of study. Digit 2 = type (1 General, 2 Foundational, 3 Professional). Digit 3 = serial number in that year. Example: <b>B124</b> = 1st Year, Foundational, 4th subject (Anatomy).</p></details><div class="tabs" role="tablist">${PROGRAM.map((y,i)=>`<button role="tab" class="${i===qy?'on':''}" onclick="sy(${i})">${y.label.replace(' Year','')}</button>`).join('')}</div><div id="list"></div></div>`}
+  else{location.replace('about.html');return}
+  el.innerHTML=h;if(r==='home')lot('l-hero','graduation');
+  if(r==='questions'){setList();$('#q').oninput=e=>{qs=e.target.value;setList()}}
+  document.querySelectorAll('[data-r]').forEach(a=>a.classList.toggle('on',a.dataset.r===r));
+  reveal();counters()}
+function sy(i){qy=i;qs='';location.hash='questions/'+i}
+function route(){if(location.hash.startsWith('#about')){location.replace('about.html');return}
+ if(location.hash.startsWith('#exam')){location.replace('exam-system.html');return}
+ const [r,p]=(location.hash.slice(1)||'home').split('/');view(['home','questions'].includes(r)?r:'home',p);window.scrollTo(0,0)}
+addEventListener('hashchange',route);route();
