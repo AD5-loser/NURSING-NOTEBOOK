@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Nursing Notebook",
+  "short_name": "Nursing NB",
+  "description": "Free RMU B.Sc. Nursing past question papers (Written & MCQ), 2018 to 2025.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f2e7",
+  "theme_color": "#f7f2e7",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

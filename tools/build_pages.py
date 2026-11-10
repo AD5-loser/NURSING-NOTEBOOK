@@ -12,6 +12,7 @@ YEARS = sorted({int(y) for g in P for s in g['subjects'] for y in s['papers']}, 
 E = html.escape
 GTM_ID = "GTM-WJN2GFMW"
 GTM_HEAD = "<!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WJN2GFMW');</script><!-- End Google Tag Manager -->"
+PWA_HEAD = '<link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icons/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><script src="../pwa.js"></script>'
 GTM_BODY = '<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJN2GFMW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->'
 
 def n(s): return sum(len(v) for v in s['papers'].values())
@@ -51,7 +52,7 @@ for lab, s in subs:
         body = f'<div class="acc open"><div class="body"><div>{rows}</div></div></div>'
     else:
         body = '<div class="card">New subject. No previous question papers exist.</div>'
-    page = f'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">{GTM_HEAD}<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f2e7">
+    page = f'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">{GTM_HEAD}{PWA_HEAD}<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f2e7">
 {meta(title, desc, "/subject/" + code.lower() + ".html")}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../style.css"></head><body>{GTM_BODY}
 <header class="top"><div class="top-in"><a class="brand" href="../index.html#home">{ICON}Nursing Notebook</a>
 <nav class="dnav" aria-label="Main"><a href="../index.html#home">Home</a><a href="../index.html#questions">Questions</a><a href="../exam-system.html">Exam System</a><a href="../about.html">About</a></nav></div></header>

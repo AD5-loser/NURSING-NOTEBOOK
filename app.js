@@ -11,15 +11,12 @@ function reveal(){const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isInte
 function counters(){document.querySelectorAll('[data-n]').forEach(el=>{const n=+el.dataset.n;if(RM){el.textContent=n;return}let t0;
   const f=t=>{t0=t0||t;const p=Math.min((t-t0)/900,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
-function copyNum(){const b=$('#cp');const ok=()=>{b.textContent='Copied!';toast('Copied!');setTimeout(()=>b.textContent='Copy',1800)};
-  const fb=()=>{try{const a=document.createElement('textarea');a.value=PAY_NUMBER;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();ok()}catch(e){toast('Copy failed')}};
-  navigator.clipboard?navigator.clipboard.writeText(PAY_NUMBER).then(ok).catch(fb):fb()}
 function social(){const l=[];if(CONTACT.facebook)l.push(`<a href="${esc(CONTACT.facebook)}" target="_blank" rel="noopener">Facebook</a>`);
   if(CONTACT.telegram)l.push(`<a href="${esc(CONTACT.telegram)}" target="_blank" rel="noopener">Telegram</a>`);
   if(CONTACT.email)l.push(`<a href="mailto:${esc(CONTACT.email)}">Email</a>`);return `<div class="soc">${l.join('')}</div>`}
 function donate(){return `<section class="donate rv"><h2>Donate / Support</h2>
 <p>Education should be free and accessible to every nursing student. This archive is maintained voluntarily, and every contribution helps keep the archive updated.</p>
-<div class="pay"><span>bKash / Nagad (Send Money)<br><code>${PAY_NUMBER}</code></span><button class="copy" id="cp" onclick="copyNum()" aria-label="Copy payment number">Copy</button></div>${social()}</section>`}
+<div class="pay"><span>bKash / Nagad (Send Money)<br><code>${PAY_NUMBER}</code></span></div>${social()}</section>`}
 function paperBtns(list){return list.map(q=>`<a class="pb ${q.t==='MCQ'?'m':''}" target="_blank" rel="noopener" href="${esc(q.l)}">${q.t}${q.s?' '+q.s.replace('Set ',''):''}</a>`).join('')}
 function subjHtml(s,yi,si,i){const id=yi+'-'+si,o=open.has(id),n=cnt(s);
   const rows=s.new?'<div class="yr"><span class="na">New subject. No previous question papers exist.</span></div>':EXAM_YEARS.map(e=>{const p=s.papers[e];return `<div class="yr"><b>${e}</b><div class="bt">${p?paperBtns(p):'<span class="na">Coming soon</span>'}</div></div>`}).join('');

@@ -1293,7 +1293,7 @@ const PROGRAM=[
  }
 ];
 const EXAM_YEARS=[2025,2024,2023,2022,2021,2020,2019,2018];
-const PAY_NUMBER='01764386880';
+const PAY_NUMBER="🥱i I don't need it";
 const CONTACT={email:'tukitaki2025@gmail.com',facebook:'https://www.facebook.com/profile.php?id=61595863536930',telegram:'https://t.me/nursing_N0TE'};
 const BNMC_PDF='1DAQvOobTbc7CH7mb1bfr5nTkQHFhLpCe';
 const EXAM={"1": [["B111", "Communicative English", 4.0, 60, 100], ["B112", "Nursing Informatics", 4.5, 60, 100], ["B113", "Behavioral Science & Humanities", 6.0, 90, 150], ["B124", "Anatomy", 7.5, 90, 150], ["B125", "Physiology", 7.5, 90, 150], ["B126", "Microbiology and Pathology", 5.75, 90, 150], ["B137", "Fundamentals of Nursing–I", 22.63, 90, 200]], "2": [["B231", "Fundamentals of Nursing–II", 11.13, 90, 200], ["B232", "Pediatric Nursing", 8.37, 90, 200], ["B233", "Medical and Surgical Nursing–I", 11.75, 90, 200], ["B224", "Pharmacology", 2.87, 60, 100], ["B235", "Traumatology & Orthopedic Nursing", 9.37, 90, 200], ["B226", "Nutrition and Biochemistry", 3.88, 90, 150], ["B237", "Laws, Ethics & Forensic Nursing", 3.0, 60, 100]], "3": [["B331", "Geriatric Nursing", 5.37, 90, 150], ["B332", "Mental Health & Psychiatric Nursing", 8.0, 90, 200], ["B333", "Emergency & Critical Care Nursing", 10.25, 90, 200], ["B334", "Medical and Surgical Nursing–II", 14.5, 90, 200], ["B335", "Community Health & Epidemiology", 11.0, 90, 200]], "4": [["B431", "Midwifery", 14.0, 90, 200], ["B432", "Obstetrical & Gynecological Nursing", 11.75, 90, 200], ["B433", "Nursing Administration & Management", 6.0, 60, 100], ["B434", "Nursing Education", 6.88, 90, 200], ["B435", "Research and Biostatistics", 5.87, 90, 200], ["B416", "Advanced Communicative English", 4.5, 60, 100]]};
