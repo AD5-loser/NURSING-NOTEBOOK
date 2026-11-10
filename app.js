@@ -14,9 +14,9 @@ function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');se
 function social(){const l=[];if(CONTACT.facebook)l.push(`<a href="${esc(CONTACT.facebook)}" target="_blank" rel="noopener">Facebook</a>`);
   if(CONTACT.telegram)l.push(`<a href="${esc(CONTACT.telegram)}" target="_blank" rel="noopener">Telegram</a>`);
   if(CONTACT.email)l.push(`<a href="mailto:${esc(CONTACT.email)}">Email</a>`);return `<div class="soc">${l.join('')}</div>`}
-function donate(){return `<section class="donate rv"><h2>Donate / Support</h2>
-<p>Education should be free and accessible to every nursing student. This archive is maintained voluntarily, and every contribution helps keep the archive updated.</p>
-<div class="pay"><span>bKash / Nagad (Send Money)<br><code>${PAY_NUMBER}</code></span></div>${social()}</section>`}
+function tgd(){const v=$('#ds').classList.toggle('show');$('#dt').setAttribute('aria-expanded',v)}
+function donate(){return `<section class="donate rv"><button class="b-cof" id="dt" onclick="tgd()" aria-expanded="false" aria-controls="ds">☕ Buy the Backbencher a singara</button>
+<div class="dsec" id="ds"><div class="sdiv"></div><p class="dh">Your money is safe. Probably. 🥱</p><p>This archive is free, and I'm not planning to become rich from question papers.</p><p class="dhelp">Spotted a wrong question or a missing paper? Help me fix it. Contact me:</p>${social()}</div></section>`}
 function paperBtns(list){return list.map(q=>`<a class="pb ${q.t==='MCQ'?'m':''}" target="_blank" rel="noopener" href="${esc(q.l)}">${q.t}${q.s?' '+q.s.replace('Set ',''):''}</a>`).join('')}
 function subjHtml(s,yi,si,i){const id=yi+'-'+si,o=open.has(id),n=cnt(s);
   const rows=s.new?'<div class="yr"><span class="na">New subject. No previous question papers exist.</span></div>':EXAM_YEARS.map(e=>{const p=s.papers[e];return `<div class="yr"><b>${e}</b><div class="bt">${p?paperBtns(p):'<span class="na">Coming soon</span>'}</div></div>`}).join('');

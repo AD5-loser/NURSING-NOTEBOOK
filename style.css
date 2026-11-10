@@ -124,3 +124,24 @@ footer{text-align:center;font-size:.8rem;color:var(--soft);padding:10px 16px 20p
 .sublinks{max-width:880px;margin:0 auto;padding:6px 16px 18px;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem}
 .sublinks b{width:100%;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:#55504a}
 .sublinks a{color:var(--soft);text-underline-offset:3px}
+
+/* Home donate (collapsible) */
+.donate .dsec{text-align:center}
+.donate .sdiv{margin:16px 0 14px}
+.donate .dh{color:var(--ink);font-weight:800;font-size:1.05rem;margin:0 0 6px}
+.donate .dsec p{margin:0 0 8px}
+.donate .dhelp{font-size:.88rem;margin-top:14px}
+.donate .soc{justify-content:center}
+.ab-tag b{color:var(--ink)}
+
+/* Install app button + dialog */
+.inst{display:inline-flex;align-items:center;gap:6px;background:var(--amber);color:#1f1b18;border:1.5px solid #1f1b18;border-radius:8px;padding:6px 12px;font-size:.8rem;font-weight:700;min-height:38px;box-shadow:2px 2px 0 #1f1b18;transition:transform .12s;white-space:nowrap}
+.inst:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #1f1b18}
+.inst svg{flex-shrink:0}
+.inst-fixed{position:fixed;top:calc(10px + env(safe-area-inset-top));right:12px;z-index:50}
+.inst-ov{position:fixed;inset:0;background:rgba(31,26,23,.5);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.inst-box{background:var(--white);border:1.5px dashed var(--bd);border-radius:4px;max-width:340px;width:100%;padding:22px 18px 18px;text-align:center;animation:pg .25s}
+.inst-box h3{font-size:1.05rem;margin-bottom:8px}
+.inst-box p{margin:0 0 16px;color:var(--soft);line-height:1.55;font-size:.92rem}
+.inst-box p b{color:var(--ink)}
+.inst-ok{width:100%;flex:none}
