@@ -7,6 +7,18 @@ const PROGRAM=[
     "name": "Communicative English",
     "code": "B111",
     "papers": {
+     "2025": [
+      {
+       "t": "Written",
+       "s": "",
+       "l": "https://drive.google.com/file/d/1WoYIiul62BG7MOho_10UWtZ94upN-rky/view?usp=drive_link"
+      },
+      {
+       "t": "MCQ",
+       "s": "",
+       "l": "https://drive.google.com/file/d/1GEJLCmRNEGSSb4IWogY63pQpMbTzpDrM/view?usp=drive_link"
+      }
+     ],
      "2024": [
       {
        "t": "Written",
