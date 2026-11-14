@@ -1,6 +1,6 @@
 /* Nursing Notebook service worker: network-first so updates appear immediately, cache fallback for offline. */
-const CACHE = 'nnb-v1';
-const SHELL = ['./','index.html','about.html','exam-system.html','style.css','app.js','data.js','pwa.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png'];
+const CACHE = 'nnb-v2';
+const SHELL = ['./','index.html','about.html','exam-system.html','style.css','app.js','data.js','pwa.js','track.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => Promise.all(SHELL.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
 });
